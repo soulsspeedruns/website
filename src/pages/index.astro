@@ -1,76 +1,76 @@
 ---
-import LayoutDefault from "@/layouts/default.astro";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { DiscordLogoIcon, ExternalLinkIcon } from "@radix-ui/react-icons";
-import { ModeToggle } from "@/components/mode-toggle";
-import { DISCORD_INVITE } from "@/lib/const";
+import LayoutDefault from '@/layouts/default.astro'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import { DiscordLogoIcon, ExternalLinkIcon } from '@radix-ui/react-icons'
+import { ModeToggle } from '@/components/mode-toggle'
+import { DISCORD_INVITE } from '@/lib/const'
 ---
 
-<LayoutDefault>
-  <div class="fixed top-2 right-2">
-    <ModeToggle client:load />
-  </div>
+<LayoutDefault title="Souls Speedruns">
+	<div class="fixed top-2 right-2">
+		<ModeToggle client:load />
+	</div>
 
-  <main class="container mx-auto max-w-7xl">
-    <div class="px-2 py-24 sm:px-6 sm:py-32 lg:px-8">
-      <div class="mx-auto max-w-2xl text-center">
-        <h2
-          class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"
-        >
-          The reference for<br />Souls Speedrunning
-        </h2>
-      </div>
-      <div class="mt-10 flex items-center justify-center gap-x-6">
-        <a
-          href={DISCORD_INVITE}
-          target="_blank"
-          class={cn(
-            buttonVariants({
-              size: "lg",
-            }),
-            "bg-[#5865F2] flex items-center gap-2 hover:cursor-pointer hover:bg-[#5865F2] shadow-xl text-white shadow-blue-400/30"
-          )}
-        >
-          <DiscordLogoIcon />
-           Discord
-        </a>
-      </div>
-      <section class="max-w-2xl mx-auto mt-10">
-        <p class="leading-7 [&:not(:first-child)]:mt-6">
-          Recently, some disagreements took place within the staff of SpeedSouls
-          that we were unfortunately unable to settle in an amicable way. As a
-          result, we decided that it is better for us to migrate away from
-          SpeedSouls and start a new community.
-        </p>
-        <p class="leading-7 [&:not(:first-child)]:mt-6">
-          The vast majority of the former SpeedSouls staff, moderators, and
-          active members of the community are participating in this migration.
-        </p>
-        <p class="leading-7 [&:not(:first-child)]:mt-6">
-          This is a difficult transition for us, but we hope it will help us
-          continue creating a space for all of us who are interested in
-          speedruns of the games we represent. As of now, the game
-          representation remains the same.
-        </p>
-        <p class="leading-7 [&:not(:first-child)]:mt-6">
-          We have decided to name the new community <span
-            class="font-medium text-primary">Souls Speedrunning</span
-          >.
-        </p>
-        <p class="leading-7 [&:not(:first-child)]:mt-6">
-          If you want to stay up-to-date with the developments of the Souls
-          speedrunning world, share your progress with fellow community members,
-          and ask for help, we invite you to join our new <a
-            href={DISCORD_INVITE}
-            target="_blank"
-            class="font-medium text-primary underline underline-offset-4 inline-flex items-center gap-1"
-          >
-            Discord server
-            <ExternalLinkIcon /></a
-          >.
-        </p>
-      </section>
-    </div>
-  </main>
+	<main class="container mx-auto max-w-7xl">
+		<div class="px-2 py-24 sm:px-6 sm:py-32 lg:px-8">
+			<div class="mx-auto max-w-2xl text-center">
+				<h2
+					class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"
+				>
+					The reference for<br />Souls Speedrunning
+				</h2>
+			</div>
+			<div class="mt-10 flex items-center justify-center gap-x-6">
+				<a
+					href={DISCORD_INVITE}
+					target="_blank"
+					class={cn(
+						buttonVariants({
+							size: 'lg',
+						}),
+						'bg-[#5865F2] flex items-center gap-2 hover:cursor-pointer hover:bg-[#5865F2] shadow-xl text-white shadow-blue-400/30',
+					)}
+				>
+					<DiscordLogoIcon />
+					 Discord
+				</a>
+			</div>
+			<section class="max-w-2xl mx-auto mt-10">
+				<p class="leading-7 [&:not(:first-child)]:mt-6">
+					Recently, some disagreements took place within the staff of SpeedSouls
+					that we were unfortunately unable to settle in an amicable way. As a
+					result, we decided that it is better for us to migrate away from
+					SpeedSouls and start a new community.
+				</p>
+				<p class="leading-7 [&:not(:first-child)]:mt-6">
+					The vast majority of the former SpeedSouls staff, moderators, and
+					active members of the community are participating in this migration.
+				</p>
+				<p class="leading-7 [&:not(:first-child)]:mt-6">
+					This is a difficult transition for us, but we hope it will help us
+					continue creating a space for all of us who are interested in
+					speedruns of the games we represent. As of now, the game
+					representation remains the same.
+				</p>
+				<p class="leading-7 [&:not(:first-child)]:mt-6">
+					We have decided to name the new community <span
+						class="font-medium text-primary">Souls Speedrunning</span
+					>.
+				</p>
+				<p class="leading-7 [&:not(:first-child)]:mt-6">
+					If you want to stay up-to-date with the developments of the Souls
+					speedrunning world, share your progress with fellow community members,
+					and ask for help, we invite you to join our new <a
+						href={DISCORD_INVITE}
+						target="_blank"
+						class="font-medium text-primary underline underline-offset-4 inline-flex items-center gap-1"
+					>
+						Discord server
+						<ExternalLinkIcon /></a
+					>.
+				</p>
+			</section>
+		</div>
+	</main>
 </LayoutDefault>
