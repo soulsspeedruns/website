@@ -1,0 +1,12 @@
+---
+interface Props {
+	title?: string
+}
+
+const { title = 'Heads up!' } = Astro.props
+---
+
+<div class="not-prose rounded-lg border p-2">
+	<span class="font-bold">{title}</span>
+	<slot />
+</div>

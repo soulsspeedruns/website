@@ -1,0 +1,50 @@
+---
+import { cn } from '@/lib/utils'
+import { getEntry, type CollectionEntry } from 'astro:content'
+
+interface Props {
+	sidebar: CollectionEntry<'sidebar'>['data']
+	class?: string | undefined
+}
+
+const { sidebar, class: className } = Astro.props
+---
+
+<ul class={cn('flex flex-col', className)}>
+	{
+		sidebar.map(async (item) => {
+			if ('children' in item) {
+				return (
+					<li>
+						<span class="my-2 inline-flex items-center gap-1 font-bold uppercase">
+							{item.name}
+						</span>
+						<Astro.self sidebar={item.children} />
+					</li>
+				)
+			}
+
+			if (item.type === 'internal') {
+				const active = `/${item.doc.slug}` === Astro.url.pathname
+				let label = item.label
+
+				if (!label) {
+					const doc = await getEntry('docs', item.doc.slug)
+					label = doc.data.title
+				}
+
+				return (
+					<li>
+						<a href={`/${item.doc.slug}`}>{label}</a>
+					</li>
+				)
+			}
+
+			return (
+				<li>
+					<a href={item.href}>{item.label}</a>
+				</li>
+			)
+		})
+	}
+</ul>

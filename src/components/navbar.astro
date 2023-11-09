@@ -1,0 +1,60 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from '@/lib/utils'
+import { DISCORD_INVITE, GITHUB_PROJECT } from '@/lib/const'
+import { HomeIcon } from 'lucide-solid'
+import Discord from './icons/discord.astro'
+import Twitter from './icons/twitter.astro'
+import Github from './icons/github.astro'
+import Search from './search.astro'
+
+interface Props extends HTMLAttributes<'nav'> {
+	separator?: boolean
+}
+
+const { class: className } = Astro.props
+---
+
+<nav class={cn('border-b bg-white flex flex-col z-10', className)}>
+	<div class="container mx-auto grid flex-grow grid-cols-10 items-center py-2">
+		<div class="col-span-2">
+			<a
+				href="/"
+				class="flex items-center gap-1"
+			>
+				<HomeIcon class="mr-2 h-4 w-4" />
+				<span class="hidden truncate xl:block">Souls Speedrunning</span>
+				<span class="xl:hidden">SSC</span>
+			</a>
+		</div>
+		<div class="col-span-6">
+			<Search />
+		</div>
+		<ul class="col-span-2 ml-auto flex items-center gap-3">
+			<li>
+				<a
+					href={DISCORD_INVITE}
+					target="_blank"
+				>
+					<Twitter class="h-4 w-4" />
+				</a>
+			</li>
+			<li>
+				<a
+					href={DISCORD_INVITE}
+					target="_blank"
+				>
+					<Discord class="h-4 w-4" />
+				</a>
+			</li>
+			<li>
+				<a
+					href={`https://github.com/${GITHUB_PROJECT}`}
+					target="_blank"
+				>
+					<Github class="h-4 w-4" />
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>

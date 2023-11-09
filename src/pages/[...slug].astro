@@ -1,0 +1,63 @@
+---
+import type { GetStaticPaths } from 'astro'
+import Layout from '@/layouts/default.astro'
+import Sidebar from '@/components/sidebar.astro'
+import { getCollection, getEntry } from 'astro:content'
+
+export const getStaticPaths = (async () => {
+	const docs = await getCollection('docs')
+
+	return docs.map((page) => {
+		return {
+			params: {
+				slug: page.slug,
+			},
+			props: {
+				page,
+			},
+		}
+	})
+}) satisfies GetStaticPaths
+
+const sidebar = await getEntry('sidebar', 'main')
+
+const { page } = Astro.props
+const { Content, headings } = await page.render()
+---
+
+<Layout title={`${page.data.title} - Souls Speedruns`}>
+	<main class="container mx-auto mt-16 grid grid-cols-10">
+		<aside
+			class="fixed top-16 col-span-2 hidden h-[calc(100vh-theme('spacing.16'))] w-full border-r md:sticky md:block"
+		>
+			<Sidebar sidebar={sidebar.data} />
+		</aside>
+		<div
+			class="prose col-span-10 max-w-none px-4 py-2 dark:prose-invert md:col-span-6"
+			data-pagefind-body
+		>
+			<h1>{page.data.title}</h1>
+			<Content />
+		</div>
+		<aside
+			class="col-span-2 hidden min-h-[calc(100vh-theme('spacing.16'))] border-l px-4 py-2 md:block"
+		>
+			<div class="sticky top-[calc(theme('spacing.16')+theme('spacing.2'))]">
+				{
+					headings.filter((heading) => heading.depth > 1).length > 0 && (
+						<>
+							<h4 class="font-bold">On This Page</h4>
+							<ul>
+								{headings.map((heading) => (
+									<li>
+										<a href={`#${heading.slug}`}>{heading.text}</a>
+									</li>
+								))}
+							</ul>
+						</>
+					)
+				}
+			</div>
+		</aside>
+	</main>
+</Layout>

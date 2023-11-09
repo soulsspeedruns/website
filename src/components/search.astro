@@ -1,0 +1,49 @@
+---
+import { Search as SearchIcon } from 'lucide-solid'
+import SearchUi from './search-ui.astro'
+---
+
+<button
+	class="flex h-10 w-full items-center gap-3 rounded-lg border p-3"
+	id="search-button"
+>
+	<SearchIcon class="h-4 w-4" />
+	<span class="text-sm opacity-50">Search...</span>
+</button>
+
+<dialog
+	id="search-dialog"
+	class="w-full max-w-xl rounded-xl border p-2 shadow backdrop:bg-black/50"
+>
+	<SearchUi />
+</dialog>
+
+<script>
+	const button = document.getElementById('search-button')! as HTMLButtonElement
+	const dialog = document.getElementById('search-dialog')! as HTMLDialogElement
+
+	function showModal() {
+		dialog.showModal()
+		document.documentElement.classList.add('overflow-hidden')
+	}
+
+	function close() {
+		dialog.close()
+		document.documentElement.classList.remove('overflow-hidden')
+	}
+
+	button.addEventListener('click', () => {
+		showModal()
+	})
+
+	dialog.addEventListener('close', close)
+
+	const down = (e: KeyboardEvent) => {
+		if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+			e.preventDefault()
+			dialog.open ? close() : showModal()
+		}
+	}
+
+	document.addEventListener('keydown', down)
+</script>
