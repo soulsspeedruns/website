@@ -1,9 +1,18 @@
 - type: internal
-  doc: getting-started
-- name: Dark Souls
-  children:
-    - type: internal
-      doc: darksouls
-      label: Introduction
-    - type: internal
-      doc: darksouls/moveswap
+  doc: darksouls
+- type: internal
+  doc: darksouls2
+- type: internal
+  doc: darksouls2sotfs
+- type: internal
+  doc: darksouls3
+- type: internal
+  doc: bloodborne
+- type: internal
+  doc: darksoulsremastered
+- type: internal
+  doc: demonssouls
+- type: internal
+  doc: demonssouls2020
+- type: internal
+  doc: eldenring

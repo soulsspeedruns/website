@@ -28,6 +28,7 @@
 		"typescript": "^5.2.2"
 	},
 	"devDependencies": {
+		"cheerio": "1.0.0-rc.12",
 		"pagefind": "^1.0.3",
 		"prettier": "^3.0.3",
 		"prettier-plugin-astro": "^0.12.1",
