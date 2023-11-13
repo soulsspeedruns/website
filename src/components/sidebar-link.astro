@@ -1,0 +1,26 @@
+---
+import type { SidebarLink } from '@/content/config'
+import SidebarExternalLink from '@/components/sidebar-external-link.astro'
+import SidebarInternalLink from '@/components/sidebar-internal-link.astro'
+
+interface Props {
+	link: SidebarLink
+	class?: string
+}
+
+const { link, ...props } = Astro.props
+---
+
+{
+	link.discriminant ? (
+		<SidebarExternalLink
+			link={link}
+			{...props}
+		/>
+	) : (
+		<SidebarInternalLink
+			link={link}
+			{...props}
+		/>
+	)
+}

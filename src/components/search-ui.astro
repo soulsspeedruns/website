@@ -1,33 +1,6 @@
 ---
-const css = import.meta.env.DEV
-	? '/dist/pagefind/pagefind-ui.css'
-	: '/pagefind/pagefind-ui.css'
-
-const js = import.meta.env.DEV
-	? '/dist/pagefind/pagefind-ui.js'
-	: '/pagefind/pagefind-ui.js'
+import { getCollection } from 'astro:content'
+import { SearchUi as SearchUiReact } from '@/components/search-ui'
 ---
 
-<link
-	href={css}
-	rel="stylesheet"
-/>
-<script
-	src={js}
-	is:inline
-></script>
-
-<div id="search"></div>
-
-<script is:inline>
-	window.addEventListener('DOMContentLoaded', () => {
-		new PagefindUI({
-			element: '#search',
-			showSubResults: true,
-			processResult: (result) => ({
-				...result,
-				url: result.raw_url,
-			}),
-		})
-	})
-</script>
+<SearchUiReact client:visible />

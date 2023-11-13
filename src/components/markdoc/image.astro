@@ -18,10 +18,8 @@ const schema = z.object({
 type LocalImage = z.infer<typeof schema>
 let localImage: LocalImage | null = null
 
-const { src, alt, title } = Astro.props
-
 try {
-	const mod = await import(src)
+	const mod = await import(Astro.props.src)
 	localImage = schema.parse(mod.default)
 	console.log(localImage)
 } catch {
@@ -34,15 +32,9 @@ try {
 		<AstroImage
 			width={localImage.height}
 			height={localImage.height}
-			src={src}
-			alt={alt}
-			title={title}
+			{...Astro.props}
 		/>
 	) : (
-		<img
-			src={src}
-			alt={alt}
-			title={title}
-		/>
+		<img {...Astro.props} />
 	)
 }

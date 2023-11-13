@@ -1,18 +1,11 @@
-- type: internal
-  doc: darksouls
-- type: internal
-  doc: darksouls2
-- type: internal
-  doc: darksouls2sotfs
-- type: internal
-  doc: darksouls3
-- type: internal
-  doc: bloodborne
-- type: internal
-  doc: darksoulsremastered
-- type: internal
-  doc: demonssouls
-- type: internal
-  doc: demonssouls2020
-- type: internal
-  doc: eldenring
+items:
+  - link:
+      discriminant: false
+      value:
+        page: dark-souls
+        label: Dark Souls
+    children:
+      - discriminant: false
+        value:
+          page: darksouls/moveswap
+          label: Hello

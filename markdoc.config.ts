@@ -13,9 +13,6 @@ export default defineMarkdocConfig({
 				},
 			},
 		},
-		table: {
-			render: component('@/components/markdoc/table.astro'),
-		},
 		image: {
 			render: component('@/components/markdoc/image.astro'),
 			attributes: {
@@ -29,20 +26,6 @@ export default defineMarkdocConfig({
 					type: String,
 				},
 			},
-		},
-	},
-	tags: {
-		alert: {
-			render: component('@/components/markdoc/alert.astro'),
-			attributes: {
-				title: {
-					type: String,
-				},
-			},
-		},
-		'youtube-icon': {
-			render: component('@/components/markdoc/youtube-icon.astro'),
-			selfClosing: true,
 		},
 	},
 })

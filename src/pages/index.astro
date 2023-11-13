@@ -4,6 +4,7 @@ import Discord from '@/components/icons/discord.astro'
 import { DISCORD_INVITE } from '@/lib/const'
 import { ArrowRightIcon } from 'lucide-react'
 import { getCollection } from 'astro:content'
+import { Image } from 'astro:assets'
 
 const games = await getCollection('games')
 ---
@@ -43,10 +44,11 @@ const games = await getCollection('games')
 				games.map((game) => (
 					<a
 						href={`/${game.data.homepage.slug}`}
+						rel="prefetch"
 						class="group relative aspect-video overflow-hidden rounded-lg"
 					>
 						<div class="absolute inset-0 bg-black" />
-						<img
+						<Image
 							src={game.data.assets.background}
 							width={240}
 							height={135}

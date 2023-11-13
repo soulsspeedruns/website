@@ -2,13 +2,14 @@ import { z, reference, defineCollection } from 'astro:content'
 
 const games = defineCollection({
 	type: 'data',
-	schema: z.object({
-		name: z.string().default('lmao'),
-		homepage: reference('docs'),
-		assets: z.object({
-			background: z.string(),
+	schema: ({ image }) =>
+		z.object({
+			name: z.string().default('lmao'),
+			homepage: reference('docs'),
+			assets: z.object({
+				background: image(),
+			}),
 		}),
-	}),
 })
 
 const docs = defineCollection({
@@ -18,27 +19,44 @@ const docs = defineCollection({
 	}),
 })
 
-const link = z.discriminatedUnion('type', [
-	z.object({
-		type: z.literal('internal'),
-		label: z.string().optional(),
-		doc: reference('docs'),
-	}),
-	z.object({
-		type: z.literal('external'),
-		label: z.string(),
+const externalLink = z.object({
+	discriminant: z.literal(true),
+	value: z.object({
 		href: z.string(),
+		label: z.string(),
+		newTab: z.boolean(),
 	}),
+})
+
+export type SidebarExternalLink = z.infer<typeof externalLink>
+
+const internalLink = z.object({
+	discriminant: z.literal(false),
+	value: z.object({
+		page: reference('docs'),
+		label: z.string().optional(),
+	}),
+})
+
+export type SidebarInternalLink = z.infer<typeof internalLink>
+
+const sidebarLink = z.discriminatedUnion('discriminant', [
+	externalLink,
+	internalLink,
 ])
 
-const group = z.object({
-	name: z.string(),
-	children: z.array(link),
-})
+export type SidebarLink = z.infer<typeof sidebarLink>
 
 const sidebar = defineCollection({
 	type: 'data',
-	schema: z.array(z.union([group, link])),
+	schema: z.object({
+		items: z.array(
+			z.object({
+				link: sidebarLink,
+				children: z.array(sidebarLink),
+			}),
+		),
+	}),
 })
 
 export const collections = {

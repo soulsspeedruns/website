@@ -30,7 +30,7 @@ const { Content, headings } = await page.render()
 		<aside
 			class="fixed top-16 col-span-2 hidden h-[calc(100vh-theme('spacing.16'))] w-full border-r md:sticky md:block"
 		>
-			<Sidebar sidebar={sidebar.data} />
+			<Sidebar sidebar={sidebar} />
 		</aside>
 		<div
 			class="prose col-span-10 max-w-none px-4 py-2 dark:prose-invert md:col-span-6"
@@ -47,7 +47,7 @@ const { Content, headings } = await page.render()
 					headings.filter((heading) => heading.depth > 1).length > 0 && (
 						<>
 							<h4 class="font-bold">On This Page</h4>
-							<ul>
+							<ul class="mb-3 border-b pb-3">
 								{headings.map((heading) => (
 									<li>
 										<a href={`#${heading.slug}`}>{heading.text}</a>
@@ -57,6 +57,13 @@ const { Content, headings } = await page.render()
 						</>
 					)
 				}
+				<a
+					href={`/keystatic/collection/${
+						page.collection
+					}/item/${encodeURIComponent(page.slug)}`}
+					target="_blank"
+					>Edit this page</a
+				>
 			</div>
 		</aside>
 	</main>
