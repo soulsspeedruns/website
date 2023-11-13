@@ -1,0 +1,48 @@
+---
+import { Image as AstroImage } from 'astro:assets'
+import { z } from 'astro:content'
+
+interface Props {
+	src: string
+	alt: string
+	title: string
+}
+
+const schema = z.object({
+	src: z.string(),
+	width: z.number(),
+	height: z.number(),
+	format: z.literal('jpg'),
+})
+
+type LocalImage = z.infer<typeof schema>
+let localImage: LocalImage | null = null
+
+const { src, alt, title } = Astro.props
+
+try {
+	const mod = await import(src)
+	localImage = schema.parse(mod.default)
+	console.log(localImage)
+} catch {
+	// fallback to normal image
+}
+---
+
+{
+	localImage ? (
+		<AstroImage
+			width={localImage.height}
+			height={localImage.height}
+			src={src}
+			alt={alt}
+			title={title}
+		/>
+	) : (
+		<img
+			src={src}
+			alt={alt}
+			title={title}
+		/>
+	)
+}

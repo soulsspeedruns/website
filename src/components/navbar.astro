@@ -2,7 +2,7 @@
 import type { HTMLAttributes } from 'astro/types'
 import { cn } from '@/lib/utils'
 import { DISCORD_INVITE, GITHUB_PROJECT } from '@/lib/const'
-import { HomeIcon } from 'lucide-solid'
+import { HomeIcon } from 'lucide-react'
 import Discord from './icons/discord.astro'
 import Twitter from './icons/twitter.astro'
 import Github from './icons/github.astro'
@@ -22,7 +22,7 @@ const { class: className } = Astro.props
 				href="/"
 				class="flex items-center gap-1"
 			>
-				<HomeIcon class="mr-2 h-4 w-4" />
+				<HomeIcon className="mr-2 h-4 w-4" />
 				<span class="hidden truncate xl:block">Souls Speedrunning</span>
 				<span class="xl:hidden">SSC</span>
 			</a>

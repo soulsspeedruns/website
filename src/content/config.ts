@@ -2,14 +2,13 @@ import { z, reference, defineCollection } from 'astro:content'
 
 const games = defineCollection({
 	type: 'data',
-	schema: ({ image }) =>
-		z.object({
-			name: z.string(),
-			homepage: reference('docs'),
-			assets: z.object({
-				background: image(),
-			}),
+	schema: z.object({
+		name: z.string().default('lmao'),
+		homepage: reference('docs'),
+		assets: z.object({
+			background: z.string(),
 		}),
+	}),
 })
 
 const docs = defineCollection({

@@ -16,6 +16,20 @@ export default defineMarkdocConfig({
 		table: {
 			render: component('@/components/markdoc/table.astro'),
 		},
+		image: {
+			render: component('@/components/markdoc/image.astro'),
+			attributes: {
+				src: {
+					type: String,
+				},
+				alt: {
+					type: String,
+				},
+				title: {
+					type: String,
+				},
+			},
+		},
 	},
 	tags: {
 		alert: {
