@@ -1,13 +1,13 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
 import { cn } from '@/lib/utils'
-import { DISCORD_INVITE, GITHUB_PROJECT } from '@/lib/const'
 import Discord from './icons/discord.astro'
 import Twitter from './icons/twitter.astro'
 import Github from './icons/github.astro'
 import Search from './search.astro'
 import { buttonVariants } from './ui/button'
 import { getEntry } from 'astro:content'
+import ModeToggle from './mode-toggle.astro'
 
 interface Props extends HTMLAttributes<'nav'> {
 	separator?: boolean
@@ -26,11 +26,14 @@ const Icons = {
 	discord: Discord,
 	github: Github,
 } as const
-
-console.log(socials)
 ---
 
-<nav class={cn('border-b bg-white flex flex-col z-10', className)}>
+<nav
+	class={cn(
+		'border-b flex flex-col z-10 bg-transparent backdrop-filter backdrop-blur-sm bg-opacity-30',
+		className,
+	)}
+>
 	<div class="container mx-auto grid flex-grow grid-cols-10 items-center py-2">
 		<div class="col-span-2 pr-2">
 			<a
@@ -64,12 +67,15 @@ console.log(socials)
 									size: 'icon',
 								})}
 							>
-								<Icon class="h-4 w-4" />
+								<Icon class="h-4 w-4 fill-current" />
 							</a>
 						</li>
 					)
 				})
 			}
+			<li>
+				<ModeToggle />
+			</li>
 			<li>
 				<a
 					href="/keystatic"

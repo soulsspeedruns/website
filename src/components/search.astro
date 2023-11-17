@@ -1,8 +1,8 @@
 ---
 import { Search as SearchIcon } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
-import SearchUi from '@/components/search-ui.astro'
 import { cn } from '@/lib/utils'
+import { SearchUi as SearchUiReact } from '@/components/search-ui'
 ---
 
 <button
@@ -11,44 +11,61 @@ import { cn } from '@/lib/utils'
 		buttonVariants({
 			variant: 'outline',
 		}),
-		'w-full justify-start',
+		'w-full justify-start bg-background',
 	)}
 >
 	<SearchIcon className="mr-2 h-4 w-4" />
 	<span class="text-sm opacity-50">Search...</span>
 </button>
 
-<dialog
-	id="search-dialog"
-	class="fixed"
->
-	<SearchUi />
+<dialog id="search-dialog">
+	<SearchUiReact
+		className="fixed top-10 w-full max-w-xl -translate-x-[50%]"
+		client:visible
+	/>
 </dialog>
 
 <script>
+	import { isOpen } from '@/stores/search'
+
 	const button = document.getElementById('search-button')! as HTMLButtonElement
 	const dialog = document.getElementById('search-dialog')! as HTMLDialogElement
 
-	function showModal() {
-		if (!dialog.open) dialog.showModal()
-		document.documentElement.classList.add('overflow-hidden')
-	}
+	isOpen.subscribe((value) => {
+		if (value) {
+			const scrollWidth =
+				window.innerWidth - document.documentElement.clientWidth
 
-	function close() {
-		if (dialog.open) dialog.close()
-		document.documentElement.classList.remove('overflow-hidden')
-	}
+			if (!dialog.open) dialog.showModal()
+			document.documentElement.classList.add('overflow-hidden')
+			document.documentElement.classList.add('blur-[2px]')
 
-	button.addEventListener('click', () => {
-		showModal()
+			document.documentElement.style.setProperty(
+				'--removed-body-scroll-bar-size',
+				`${scrollWidth}px`,
+			)
+		} else {
+			if (dialog.open) dialog.close()
+			document.documentElement.classList.remove('overflow-hidden')
+			document.documentElement.classList.remove('blur-[2px]')
+			document.documentElement.style.removeProperty(
+				'--removed-body-scroll-bar-size',
+			)
+		}
 	})
 
-	dialog.addEventListener('close', close)
+	button.addEventListener('click', () => {
+		isOpen.set(true)
+	})
+
+	dialog.addEventListener('close', () => {
+		isOpen.set(false)
+	})
 
 	const down = (e: KeyboardEvent) => {
 		if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
 			e.preventDefault()
-			dialog.open ? close() : showModal()
+			isOpen.set(!isOpen.get())
 		}
 	}
 
