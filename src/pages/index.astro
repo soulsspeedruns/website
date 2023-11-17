@@ -1,10 +1,12 @@
 ---
 import Layout from '@/layouts/default.astro'
 import Discord from '@/components/icons/discord.astro'
+import { buttonVariants } from '@/components/ui/button'
 import { DISCORD_INVITE } from '@/lib/const'
 import { ArrowRightIcon } from 'lucide-react'
 import { getCollection } from 'astro:content'
 import { Image } from 'astro:assets'
+import { cn } from '@/lib/utils'
 
 const games = await getCollection('games')
 ---
@@ -19,18 +21,28 @@ const games = await getCollection('games')
 					The reference for<br />Souls Speedrunning
 				</h2>
 			</div>
-			<div class="mt-10 flex items-center justify-center gap-x-6">
+			<div class="mt-10 flex items-center justify-center gap-x-2">
 				<a
 					href={DISCORD_INVITE}
 					target="_blank"
-					class="flex items-center gap-2"
+					class={cn(
+						'flex items-center gap-2',
+						buttonVariants({
+							variant: 'outline',
+						}),
+					)}
 				>
 					<Discord class="h-4 w-4" />
 					 Discord
 				</a>
 				<a
 					href="/getting-started"
-					class="group flex items-center gap-2"
+					class={cn(
+						'group flex items-center gap-2',
+						buttonVariants({
+							variant: 'outline',
+						}),
+					)}
 				>
 					Getting started
 					<ArrowRightIcon

@@ -12,10 +12,23 @@ const games = defineCollection({
 		}),
 })
 
+const socials = defineCollection({
+	type: 'data',
+	schema: z.object({
+		name: z.string(),
+		link: z.string(),
+	}),
+})
+
 const docs = defineCollection({
 	type: 'content',
 	schema: z.object({
 		title: z.string(),
+		pagefind: z
+			.object({
+				ignore: z.boolean(),
+			})
+			.optional(),
 	}),
 })
 
@@ -63,4 +76,5 @@ export const collections = {
 	games,
 	docs,
 	sidebar,
+	socials,
 }

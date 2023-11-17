@@ -2,27 +2,46 @@
 import type { HTMLAttributes } from 'astro/types'
 import { cn } from '@/lib/utils'
 import { DISCORD_INVITE, GITHUB_PROJECT } from '@/lib/const'
-import { HomeIcon } from 'lucide-react'
 import Discord from './icons/discord.astro'
 import Twitter from './icons/twitter.astro'
 import Github from './icons/github.astro'
 import Search from './search.astro'
+import { buttonVariants } from './ui/button'
+import { getEntry } from 'astro:content'
 
 interface Props extends HTMLAttributes<'nav'> {
 	separator?: boolean
 }
 
 const { class: className } = Astro.props
+
+const socials = await Promise.all([
+	getEntry('socials', 'twitter'),
+	getEntry('socials', 'discord'),
+	getEntry('socials', 'github'),
+])
+
+const Icons = {
+	twitter: Twitter,
+	discord: Discord,
+	github: Github,
+} as const
+
+console.log(socials)
 ---
 
 <nav class={cn('border-b bg-white flex flex-col z-10', className)}>
 	<div class="container mx-auto grid flex-grow grid-cols-10 items-center py-2">
-		<div class="col-span-2">
+		<div class="col-span-2 pr-2">
 			<a
 				href="/"
-				class="flex items-center gap-1"
+				class={cn(
+					buttonVariants({
+						variant: 'secondary',
+					}),
+					'w-full',
+				)}
 			>
-				<HomeIcon className="mr-2 h-4 w-4" />
 				<span class="hidden truncate xl:block">Souls Speedrunning</span>
 				<span class="xl:hidden">SSC</span>
 			</a>
@@ -30,35 +49,34 @@ const { class: className } = Astro.props
 		<div class="col-span-6">
 			<Search />
 		</div>
-		<ul class="col-span-2 ml-auto flex items-center gap-3">
-			<li>
-				<a
-					href={DISCORD_INVITE}
-					target="_blank"
-				>
-					<Twitter class="h-4 w-4" />
-				</a>
-			</li>
-			<li>
-				<a
-					href={DISCORD_INVITE}
-					target="_blank"
-				>
-					<Discord class="h-4 w-4" />
-				</a>
-			</li>
-			<li>
-				<a
-					href={`https://github.com/${GITHUB_PROJECT}`}
-					target="_blank"
-				>
-					<Github class="h-4 w-4" />
-				</a>
-			</li>
+		<ul class="col-span-2 ml-auto flex items-center">
+			{
+				socials.map((social) => {
+					const Icon = Icons[social.id]
+
+					return (
+						<li>
+							<a
+								href={social.data.link}
+								target="_blank"
+								class={buttonVariants({
+									variant: 'ghost',
+									size: 'icon',
+								})}
+							>
+								<Icon class="h-4 w-4" />
+							</a>
+						</li>
+					)
+				})
+			}
 			<li>
 				<a
 					href="/keystatic"
 					target="_blank"
+					class={buttonVariants({
+						variant: 'outline',
+					})}
 				>
 					Admin
 				</a>

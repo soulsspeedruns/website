@@ -1,19 +1,26 @@
 ---
 import { Search as SearchIcon } from 'lucide-react'
-import SearchUi from './search-ui.astro'
+import { buttonVariants } from '@/components/ui/button'
+import SearchUi from '@/components/search-ui.astro'
+import { cn } from '@/lib/utils'
 ---
 
 <button
-	class="flex h-10 w-full items-center gap-3 rounded-lg border p-3"
 	id="search-button"
+	class={cn(
+		buttonVariants({
+			variant: 'outline',
+		}),
+		'w-full justify-start',
+	)}
 >
-	<SearchIcon className="h-4 w-4" />
+	<SearchIcon className="mr-2 h-4 w-4" />
 	<span class="text-sm opacity-50">Search...</span>
 </button>
 
 <dialog
 	id="search-dialog"
-	class="w-full max-w-xl rounded-xl border p-2 shadow backdrop:bg-black/50"
+	class="fixed"
 >
 	<SearchUi />
 </dialog>
@@ -23,12 +30,12 @@ import SearchUi from './search-ui.astro'
 	const dialog = document.getElementById('search-dialog')! as HTMLDialogElement
 
 	function showModal() {
-		dialog.showModal()
+		if (!dialog.open) dialog.showModal()
 		document.documentElement.classList.add('overflow-hidden')
 	}
 
 	function close() {
-		dialog.close()
+		if (dialog.open) dialog.close()
 		document.documentElement.classList.remove('overflow-hidden')
 	}
 

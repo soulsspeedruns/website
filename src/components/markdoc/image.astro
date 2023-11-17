@@ -19,7 +19,7 @@ type LocalImage = z.infer<typeof schema>
 let localImage: LocalImage | null = null
 
 try {
-	const mod = await import(Astro.props.src)
+	const mod = await import(/* @vite-ignore */ Astro.props.src)
 	localImage = schema.parse(mod.default)
 	console.log(localImage)
 } catch {
