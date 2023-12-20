@@ -44,12 +44,12 @@ items:
   - link:
       discriminant: false
       value:
-        page: eldenring
-        label: Elden Ring
+        page: desremake
+        label: Demon's Souls (2020)
     children: []
   - link:
       discriminant: false
       value:
-        page: desremake
-        label: Demon's Souls (2020)
+        page: eldenring
+        label: Elden Ring
     children: []
