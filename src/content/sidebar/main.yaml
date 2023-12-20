@@ -2,7 +2,7 @@ items:
   - link:
       discriminant: false
       value:
-        page: dark-souls
+        page: darksouls
         label: Dark Souls
     children:
       - discriminant: false
