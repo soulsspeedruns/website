@@ -2,10 +2,54 @@ items:
   - link:
       discriminant: false
       value:
+        page: bloodborne
+        label: Bloodborne
+    children: []
+  - link:
+      discriminant: false
+      value:
         page: darksouls
         label: Dark Souls
-    children:
-      - discriminant: false
-        value:
-          page: darksouls/moveswap
-          label: Hello
+    children: []
+  - link:
+      discriminant: false
+      value:
+        page: ds1remaster
+        label: Dark Souls Remastered
+    children: []
+  - link:
+      discriminant: false
+      value:
+        page: darksouls2
+        label: Dark Souls II
+    children: []
+  - link:
+      discriminant: false
+      value:
+        page: ds2sotfs
+        label: 'Dark Souls II: SotFS'
+    children: []
+  - link:
+      discriminant: false
+      value:
+        page: darksouls3
+        label: Dark Souls III
+    children: []
+  - link:
+      discriminant: false
+      value:
+        page: demonssouls
+        label: Demon's Souls
+    children: []
+  - link:
+      discriminant: false
+      value:
+        page: eldenring
+        label: Elden Ring
+    children: []
+  - link:
+      discriminant: false
+      value:
+        page: desremake
+        label: Demon's Souls (2020)
+    children: []
