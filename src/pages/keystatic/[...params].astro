@@ -42,7 +42,7 @@ if (config.storage.kind === 'github' && accessToken) {
 		if (result.success) {
 			error = {
 				title: 'Forbidden',
-				message: `The user is not part of the Team.`,
+				message: `The user is not a verified contributor.`,
 			}
 
 			Astro.response.status = 403
