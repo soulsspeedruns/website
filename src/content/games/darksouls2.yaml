@@ -1,4 +1,4 @@
 name: Dark Souls II
 homepage: darksouls2
 assets:
-  background: ../../assets/images/games/darksouls2/assets/background.jpg
+  background: src/images/games/darksouls2/assets/background.jpg

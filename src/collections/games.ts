@@ -12,7 +12,7 @@ export const games = collection({
 		}),
 		homepage: fields.relationship({
 			label: 'Homepage',
-			collection: 'docs',
+			collection: 'pages',
 			validation: {
 				isRequired: true,
 			},
@@ -20,8 +20,11 @@ export const games = collection({
 		assets: fields.object({
 			background: fields.image({
 				label: 'Background',
-				directory: 'src/assets/images/games',
-				publicPath: '../../assets/images/games',
+				directory: 'public/games',
+				publicPath: '/games',
+				validation: {
+					isRequired: true,
+				},
 			}),
 		}),
 	},

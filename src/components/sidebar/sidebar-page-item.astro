@@ -1,0 +1,23 @@
+---
+import type { NavigationItem } from './sidebar-item.astro'
+import { getEntry } from 'astro:content'
+
+interface Props {
+	item: Extract<NavigationItem, { discriminant: 'page' }>
+	class?: string
+}
+
+const { item, ...props } = Astro.props
+let { slug, label } = item.value
+
+if (!label) {
+	const { data } = await getEntry(slug.collection, slug.slug)
+	label = data.title
+}
+---
+
+<a
+	href={`/${slug.slug}`}
+	{...props}
+	>{label}</a
+>

@@ -2,7 +2,6 @@
 import { Search as SearchIcon } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { SearchUi as SearchUiReact } from '@/components/search-ui'
 ---
 
 <button
@@ -18,11 +17,17 @@ import { SearchUi as SearchUiReact } from '@/components/search-ui'
 	<span class="text-sm opacity-50">Search...</span>
 </button>
 
-<dialog id="search-dialog">
-	<SearchUiReact
-		className="fixed top-10 w-full max-w-xl -translate-x-[50%]"
-		client:visible
-	/>
+<dialog
+	id="search-dialog"
+	class="relative"
+>
+	<div class="fixed inset-0 mx-auto max-w-screen-lg py-10">
+		<div
+			id="search"
+			class="max-h-[calc(100vh-theme('spacing.20'))] w-full overflow-y-auto rounded-xl border bg-background p-2 shadow"
+		>
+		</div>
+	</div>
 </dialog>
 
 <script>

@@ -1,4 +1,4 @@
 name: Dark Souls
 homepage: darksouls
 assets:
-  background: ../../assets/images/games/darksouls/assets/background.jpg
+  background: src/images/games/darksouls/assets/background.jpg

@@ -1,0 +1,48 @@
+---
+import { cn } from '@/lib/utils'
+import type { CollectionEntry } from 'astro:content'
+import SidebarItem from '@/components/sidebar/sidebar-item.astro'
+import { buttonVariants } from '../ui/button'
+
+interface Props {
+	navigation: CollectionEntry<'navigation'>
+	class?: string | undefined
+}
+
+const { navigation, class: className } = Astro.props
+---
+
+<ul class={cn('flex flex-col', className)}>
+	{
+		navigation.data.items.map(({ item, children }) => (
+			<li class="flex flex-col items-stretch">
+				<SidebarItem
+					item={item}
+					class={cn(
+						buttonVariants({
+							variant: 'ghost',
+							size: 'sm',
+						}),
+						'justify-start',
+					)}
+				/>
+				{children.length > 0 && (
+					<>
+						{children.map((item) => (
+							<SidebarItem
+								item={item}
+								class={cn(
+									buttonVariants({
+										variant: 'ghost',
+										size: 'sm',
+									}),
+									'justify-start',
+								)}
+							/>
+						))}
+					</>
+				)}
+			</li>
+		))
+	}
+</ul>

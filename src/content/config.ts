@@ -4,8 +4,8 @@ const games = defineCollection({
 	type: 'data',
 	schema: ({ image }) =>
 		z.object({
-			name: z.string().default('lmao'),
-			homepage: reference('docs'),
+			name: z.string(),
+			homepage: reference('pages'),
 			assets: z.object({
 				background: image(),
 			}),
@@ -20,7 +20,7 @@ const socials = defineCollection({
 	}),
 })
 
-const docs = defineCollection({
+const pages = defineCollection({
 	type: 'content',
 	schema: z.object({
 		title: z.string(),
@@ -32,41 +32,32 @@ const docs = defineCollection({
 	}),
 })
 
-const externalLink = z.object({
-	discriminant: z.literal(true),
-	value: z.object({
-		href: z.string(),
-		label: z.string(),
-		newTab: z.boolean(),
+// const externalLink = z.object({
+// 	discriminant: z.literal('url'),
+// 	value: z.object({
+// 		href: z.string(),
+// 		label: z.string(),
+// 		newTab: z.boolean(),
+// 	}),
+// })
+
+const item = z.discriminatedUnion('discriminant', [
+	z.object({
+		discriminant: z.literal('page'),
+		value: z.object({
+			slug: reference('pages'),
+			label: z.string().optional(),
+		}),
 	}),
-})
-
-export type SidebarExternalLink = z.infer<typeof externalLink>
-
-const internalLink = z.object({
-	discriminant: z.literal(false),
-	value: z.object({
-		page: reference('docs'),
-		label: z.string().optional(),
-	}),
-})
-
-export type SidebarInternalLink = z.infer<typeof internalLink>
-
-const sidebarLink = z.discriminatedUnion('discriminant', [
-	externalLink,
-	internalLink,
 ])
 
-export type SidebarLink = z.infer<typeof sidebarLink>
-
-const sidebar = defineCollection({
+const navigation = defineCollection({
 	type: 'data',
 	schema: z.object({
 		items: z.array(
 			z.object({
-				link: sidebarLink,
-				children: z.array(sidebarLink),
+				item,
+				children: z.array(item),
 			}),
 		),
 	}),
@@ -74,7 +65,7 @@ const sidebar = defineCollection({
 
 export const collections = {
 	games,
-	docs,
-	sidebar,
+	pages,
+	navigation,
 	socials,
 }

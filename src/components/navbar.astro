@@ -4,10 +4,10 @@ import { cn } from '@/lib/utils'
 import Discord from './icons/discord.astro'
 import Twitter from './icons/twitter.astro'
 import Github from './icons/github.astro'
-import Search from './search.astro'
 import { buttonVariants } from './ui/button'
 import { getEntry } from 'astro:content'
 import ModeToggle from './mode-toggle.astro'
+import Search from '@/components/search.astro'
 
 interface Props extends HTMLAttributes<'nav'> {
 	separator?: boolean
@@ -75,17 +75,6 @@ const Icons = {
 			}
 			<li>
 				<ModeToggle />
-			</li>
-			<li>
-				<a
-					href="/keystatic"
-					target="_blank"
-					class={buttonVariants({
-						variant: 'outline',
-					})}
-				>
-					Admin
-				</a>
 			</li>
 		</ul>
 	</div>

@@ -1,11 +1,11 @@
 import { defineConfig, type ViteUserConfig } from 'astro/config'
 import tailwind from '@astrojs/tailwind'
 import markdoc from '@astrojs/markdoc'
-import keystatic from '@keystatic/astro'
 import react from '@astrojs/react'
 import vercel from '@astrojs/vercel/serverless'
 import prefetch from '@astrojs/prefetch'
 import sitemap from '@astrojs/sitemap'
+import keystatic from '@keystatic/astro'
 
 const vite: ViteUserConfig = {
 	server: {
@@ -23,9 +23,9 @@ export default defineConfig({
 	site: 'https://soulsspeedruns.com',
 	integrations: [
 		markdoc(),
-		keystatic(),
 		prefetch(),
 		react(),
+		keystatic(),
 		sitemap(),
 		tailwind({
 			applyBaseStyles: false,

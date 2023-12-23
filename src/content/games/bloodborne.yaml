@@ -1,4 +1,4 @@
 name: Bloodborne
 homepage: bloodborne
 assets:
-  background: ../../assets/images/games/bloodborne/assets/background.jpg
+  background: src/images/games/bloodborne/assets/background.jpg

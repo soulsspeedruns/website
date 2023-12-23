@@ -32,6 +32,14 @@ const { title } = Astro.props
 			rel="sitemap"
 			href="/sitemap-index.xml"
 		/>
+		<link
+			href="/pagefind/pagefind-ui.css"
+			rel="stylesheet"
+		/>
+		<script
+			is:inline
+			src="/pagefind/pagefind-ui.js"
+		></script>
 		<title>{title}</title>
 	</head>
 	<body class="!mr-[var(--removed-body-scroll-bar-size,'0px')]">
@@ -40,6 +48,14 @@ const { title } = Astro.props
 		/>
 		<slot />
 	</body>
+	<script is:inline>
+		window.addEventListener('DOMContentLoaded', () => {
+			new PagefindUI({
+				element: '#search',
+				showSubResults: true,
+			})
+		})
+	</script>
 	<script is:inline>
 		const transitionClass = '[&_*]:!transition-none'
 

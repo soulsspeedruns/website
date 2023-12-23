@@ -1,4 +1,4 @@
 name: 'Dark Souls II: Scholar of the First Sin'
 homepage: ds2sotfs
 assets:
-  background: ../../assets/images/games/ds2sotfs/assets/background.jpg
+  background: src/images/games/ds2sotfs/assets/background.jpg
