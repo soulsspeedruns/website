@@ -5,47 +5,49 @@ import { z } from 'astro:content'
 import Layout from '@/layouts/default.astro'
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-
-const accessToken = Astro.cookies.get('keystatic-gh-access-token')
+import config from 'keystatic.config'
 
 export const prerender = false
 
+const accessToken = Astro.cookies.get('keystatic-gh-access-token')
 let error: { title: string; message: string } | undefined = undefined
 
-if (accessToken) {
-	const octokit = new Octokit({
+if (config.storage.kind === 'github' && accessToken) {
+	const souls = new Octokit({
+		auth: import.meta.env.SOULS_PERSONAL_ACCESS_TOKEN,
+	})
+
+	const keystatic = new Octokit({
 		auth: accessToken.value,
 	})
 
-	const me = await octokit.request('GET /user', {
-		headers: {
-			'X-GitHub-Api-Version': '2022-11-28',
-		},
-	})
-
 	try {
-		await octokit.request(
-			'GET /repos/{owner}/{repo}/collaborators/{username}',
-			{
-				owner: 'soulsspeedruns',
-				repo: 'website',
-				username: me.data.login,
-				headers: {
-					'X-GitHub-Api-Version': '2022-11-28',
-				},
+		const me = await keystatic.request('GET /user', {
+			headers: {
+				'X-GitHub-Api-Version': '2022-11-28',
 			},
-		)
+		})
+
+		await souls.request('GET /repos/{owner}/{repo}/collaborators/{username}', {
+			owner: 'soulsspeedruns',
+			repo: 'website',
+			username: me.data.login,
+			headers: {
+				'X-GitHub-Api-Version': '2022-11-28',
+			},
+		})
 	} catch (e) {
 		const result = z.object({ status: z.literal(404) }).safeParse(e)
 
 		if (result.success) {
 			error = {
 				title: 'Forbidden',
-				message: `The user ${me.data.login} is not part of the Team.`,
+				message: `The user is not part of the Team.`,
 			}
 
 			Astro.response.status = 403
 		} else {
+			console.log(e)
 			throw e
 		}
 	}
