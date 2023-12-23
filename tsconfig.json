@@ -7,7 +7,8 @@
 		"noErrorTruncation": true,
 		"paths": {
 			"@/*": ["./src/*"],
-			"$dist/*": ["./dist/*"]
+			"$dist/*": ["./dist/*"],
+			"keystatic.config": ["./keystatic.config.ts"]
 		}
 	}
 }
