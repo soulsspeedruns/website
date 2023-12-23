@@ -3,7 +3,6 @@ import Layout from '@/layouts/default.astro'
 import Discord from '@/components/icons/discord.astro'
 import { buttonVariants } from '@/components/ui/button'
 import { DISCORD_INVITE } from '@/lib/const'
-import { ArrowRightIcon } from 'lucide-react'
 import { getCollection } from 'astro:content'
 import { Image } from 'astro:assets'
 import { cn } from '@/lib/utils'
@@ -20,8 +19,8 @@ const games = await getCollection('games')
 				>
 					Welcome to the <br />SoulsSpeedruns Wiki
 				</h2>
-				<br>
-				Work In Progress.
+				<br />
+				 Work In Progress.
 			</div>
 			<div class="mt-10 flex items-center justify-center gap-x-2">
 				<a

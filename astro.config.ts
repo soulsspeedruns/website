@@ -5,7 +5,6 @@ import react from '@astrojs/react'
 import vercel from '@astrojs/vercel/serverless'
 import prefetch from '@astrojs/prefetch'
 import sitemap from '@astrojs/sitemap'
-import keystatic from '@keystatic/astro'
 
 const vite: ViteUserConfig = {
 	server: {
@@ -25,7 +24,6 @@ export default defineConfig({
 		markdoc(),
 		prefetch(),
 		react(),
-		keystatic(),
 		sitemap(),
 		tailwind({
 			applyBaseStyles: false,
