@@ -5,13 +5,13 @@ import { navigation } from '@/singletons/navigation'
 
 export default config({
 	storage:
-		process.env.NODE_ENV === 'development'
+		process.env.NODE_ENV !== 'development'
 			? {
 					kind: 'local',
 			  }
 			: {
 					kind: 'github',
-					repo: 'soulsspeedruns/remix-keystatic',
+					repo: 'soulsspeedruns/website',
 					branchPrefix: 'wiki/',
 			  },
 	ui: {

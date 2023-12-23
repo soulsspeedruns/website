@@ -3,6 +3,8 @@ import type { GetStaticPaths } from 'astro'
 import Layout from '@/layouts/default.astro'
 import Sidebar from '@/components/sidebar/sidebar.astro'
 import { getCollection, getEntry } from 'astro:content'
+import config from 'keystatic.config'
+import keystaticConfig from 'keystatic.config'
 
 export const getStaticPaths = (async () => {
 	const pages = await getCollection('pages')
@@ -27,6 +29,14 @@ const { Content, headings } = await page.render()
 const pagefindProps = page.data.pagefind?.ignore
 	? { 'data-pagefind-ignore': true }
 	: { 'data-pagefind-body': true }
+
+let editUrl = '/keystatic'
+
+if (keystaticConfig.storage.kind === 'github') {
+	editUrl += '/branch/main'
+}
+
+editUrl = `${editUrl}/collection/pages/item/${encodeURIComponent(page.slug)}`
 ---
 
 <Layout title={`${page.data.title} - Souls Speedruns`}>
@@ -62,9 +72,7 @@ const pagefindProps = page.data.pagefind?.ignore
 					)
 				}
 				<a
-					href={`/keystatic/collection/${
-						page.collection
-					}/item/${encodeURIComponent(page.slug)}`}
+					href={editUrl}
 					target="_blank"
 					>Edit this page</a
 				>
