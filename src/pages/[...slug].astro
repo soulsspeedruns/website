@@ -5,6 +5,7 @@ import Sidebar from '@/components/sidebar/sidebar.astro'
 import { getCollection, getEntry } from 'astro:content'
 import config from 'keystatic.config'
 import keystaticConfig from 'keystatic.config'
+import Github from '@/components/icons/github.astro'
 
 export const getStaticPaths = (async () => {
 	const pages = await getCollection('pages')
@@ -74,7 +75,10 @@ editUrl = `${editUrl}/collection/pages/item/${encodeURIComponent(page.slug)}`
 				<a
 					href={editUrl}
 					target="_blank"
-					>Edit this page</a
+					class="flex items-center"
+				>
+					<Github class="mr-2 h-4 w-4" />
+					 Edit this page</a
 				>
 			</div>
 		</aside>
