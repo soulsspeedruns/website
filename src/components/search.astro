@@ -19,12 +19,12 @@ import { cn } from '@/lib/utils'
 
 <dialog
 	id="search-dialog"
-	class="relative"
+	class="relative backdrop:bg-black backdrop:opacity-75"
 >
-	<div class="fixed inset-0 mx-auto max-w-screen-lg py-10">
+	<div class="fixed inset-0 mx-auto max-w-screen-lg px-2 py-2 lg:py-10">
 		<div
 			id="search"
-			class="max-h-[calc(100vh-theme('spacing.20'))] w-full overflow-y-auto rounded-xl border bg-background p-2 shadow"
+			class="max-h-[calc(100vh-theme('spacing.4'))] w-full overflow-y-auto rounded-xl border bg-background p-2 shadow lg:max-h-[calc(100vh-theme('spacing.20'))]"
 		>
 		</div>
 	</div>
@@ -43,7 +43,7 @@ import { cn } from '@/lib/utils'
 
 			if (!dialog.open) dialog.showModal()
 			document.documentElement.classList.add('overflow-hidden')
-			document.documentElement.classList.add('blur-[2px]')
+			// document.documentElement.classList.add('blur-[2px]')
 
 			document.documentElement.style.setProperty(
 				'--removed-body-scroll-bar-size',
@@ -52,7 +52,7 @@ import { cn } from '@/lib/utils'
 		} else {
 			if (dialog.open) dialog.close()
 			document.documentElement.classList.remove('overflow-hidden')
-			document.documentElement.classList.remove('blur-[2px]')
+			// document.documentElement.classList.remove('blur-[2px]')
 			document.documentElement.style.removeProperty(
 				'--removed-body-scroll-bar-size',
 			)

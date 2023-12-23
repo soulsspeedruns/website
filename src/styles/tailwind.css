@@ -27,11 +27,11 @@
 
 		--pagefind-ui-scale: 1;
 		--pagefind-ui-primary: #034ad8;
-		--pagefind-ui-text: theme('textColor.black');
+		--pagefind-ui-text: theme('textColor.foreground');
 		--pagefind-ui-background: theme('colors.background');
 		--pagefind-ui-border: #eeeeee;
 		--pagefind-ui-tag: #eeeeee;
-		--pagefind-ui-border-width: 2px;
+		--pagefind-ui-border-width: 1px;
 		--pagefind-ui-border-radius: 8px;
 		--pagefind-ui-image-border-radius: theme('borderRadius.lg');
 		--pagefind-ui-image-box-ratio: 3 / 2;
@@ -59,9 +59,6 @@
 		--input: 12 6.5% 15.1%;
 		--ring: 20.5 90.2% 48.2%;
 
-		--pagefind-ui-primary: #eeeeee;
-		--pagefind-ui-text: #eeeeee;
-		--pagefind-ui-background: #152028;
 		--pagefind-ui-border: #152028;
 		--pagefind-ui-tag: #152028;
 	}
