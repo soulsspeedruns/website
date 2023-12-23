@@ -1,0 +1,24 @@
+---
+import { Button } from '@/components/ui/button'
+import { Moon, Sun } from 'lucide-react'
+
+/**
+ * The on click handler for this button
+ * is inlined in the layout as client side theme code
+ * needs to run asap. This also avoids code duplication.
+ */
+---
+
+<Button
+	id="mode-toggle"
+	variant="ghost"
+	size="icon"
+>
+	<Sun
+		className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+	/>
+	<Moon
+		className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+	/>
+	<span class="sr-only">Toggle theme</span>
+</Button>

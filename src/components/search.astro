@@ -1,0 +1,78 @@
+---
+import { Search as SearchIcon } from 'lucide-react'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+---
+
+<button
+	id="search-button"
+	class={cn(
+		buttonVariants({
+			variant: 'outline',
+		}),
+		'w-full justify-start bg-background',
+	)}
+>
+	<SearchIcon className="mr-2 h-4 w-4" />
+	<span class="text-sm opacity-50">Search...</span>
+</button>
+
+<dialog
+	id="search-dialog"
+	class="relative"
+>
+	<div class="fixed inset-0 mx-auto max-w-screen-lg py-10">
+		<div
+			id="search"
+			class="max-h-[calc(100vh-theme('spacing.20'))] w-full overflow-y-auto rounded-xl border bg-background p-2 shadow"
+		>
+		</div>
+	</div>
+</dialog>
+
+<script>
+	import { isOpen } from '@/stores/search'
+
+	const button = document.getElementById('search-button')! as HTMLButtonElement
+	const dialog = document.getElementById('search-dialog')! as HTMLDialogElement
+
+	isOpen.subscribe((value) => {
+		if (value) {
+			const scrollWidth =
+				window.innerWidth - document.documentElement.clientWidth
+
+			if (!dialog.open) dialog.showModal()
+			document.documentElement.classList.add('overflow-hidden')
+			document.documentElement.classList.add('blur-[2px]')
+
+			document.documentElement.style.setProperty(
+				'--removed-body-scroll-bar-size',
+				`${scrollWidth}px`,
+			)
+		} else {
+			if (dialog.open) dialog.close()
+			document.documentElement.classList.remove('overflow-hidden')
+			document.documentElement.classList.remove('blur-[2px]')
+			document.documentElement.style.removeProperty(
+				'--removed-body-scroll-bar-size',
+			)
+		}
+	})
+
+	button.addEventListener('click', () => {
+		isOpen.set(true)
+	})
+
+	dialog.addEventListener('close', () => {
+		isOpen.set(false)
+	})
+
+	const down = (e: KeyboardEvent) => {
+		if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+			e.preventDefault()
+			isOpen.set(!isOpen.get())
+		}
+	}
+
+	document.addEventListener('keydown', down)
+</script>

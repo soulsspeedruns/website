@@ -1,0 +1,47 @@
+items:
+  - item:
+      discriminant: page
+      value:
+        slug: bloodborne
+    children: []
+  - item:
+      discriminant: page
+      value:
+        slug: darksouls
+    children: []
+  - item:
+      discriminant: page
+      value:
+        slug: darksouls2
+    children: []
+  - item:
+      discriminant: page
+      value:
+        slug: darksouls3
+    children: []
+  - item:
+      discriminant: page
+      value:
+        slug: demonssouls
+    children: []
+  - item:
+      discriminant: page
+      value:
+        slug: desremake
+    children: []
+  - item:
+      discriminant: page
+      value:
+        slug: ds1remaster
+    children: []
+  - item:
+      discriminant: page
+      value:
+        slug: ds2sotfs
+        label: 'Dark Souls II: SOTFS'
+    children: []
+  - item:
+      discriminant: page
+      value:
+        slug: eldenring
+    children: []

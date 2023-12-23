@@ -1,5 +1,6 @@
 ---
 import '@/styles/tailwind.css'
+import Navbar from '@/components/navbar.astro'
 
 interface Props {
 	title: string
@@ -8,7 +9,10 @@ interface Props {
 const { title } = Astro.props
 ---
 
-<html lang="en">
+<html
+	lang="en"
+	class="scroll-pt-[calc(theme('spacing.16')+theme('spacing.2'))] [&_*]:!transition-none"
+>
 	<head>
 		<meta charset="utf-8" />
 		<link
@@ -24,36 +28,87 @@ const { title } = Astro.props
 			name="generator"
 			content={Astro.generator}
 		/>
+		<link
+			rel="sitemap"
+			href="/sitemap-index.xml"
+		/>
+		<link
+			href="/pagefind/pagefind-ui.css"
+			rel="stylesheet"
+		/>
+		<script
+			is:inline
+			src="/pagefind/pagefind-ui.js"
+		></script>
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class="!mr-[var(--removed-body-scroll-bar-size,'0px')]">
+		<Navbar
+			class="fixed left-0 right-0 top-0 !mr-[var(--removed-body-scroll-bar-size,'0px')] h-16"
+		/>
 		<slot />
 	</body>
 	<script is:inline>
-		const getThemePreference = () => {
-			if (
-				typeof localStorage !== 'undefined' &&
-				localStorage.getItem('theme')
-			) {
-				return localStorage.getItem('theme')
-			}
+		window.addEventListener('DOMContentLoaded', () => {
+			new PagefindUI({
+				element: '#search',
+				showSubResults: true,
+			})
+		})
+	</script>
+	<script is:inline>
+		const transitionClass = '[&_*]:!transition-none'
+
+		const matchMediaTheme = () => {
 			return window.matchMedia('(prefers-color-scheme: dark)').matches
 				? 'dark'
 				: 'light'
 		}
 
+		const getThemePreference = () => {
+			if (
+				typeof localStorage !== 'undefined' &&
+				localStorage.getItem('theme') &&
+				localStorage.getItem('theme') !== 'system'
+			) {
+				return localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'
+			}
+
+			return matchMediaTheme()
+		}
+
 		const isDark = getThemePreference() === 'dark'
 		document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
+		document.documentElement.classList.remove(transitionClass)
 
-		if (typeof localStorage !== 'undefined') {
-			const observer = new MutationObserver(() => {
-				const isDark = document.documentElement.classList.contains('dark')
-				localStorage.setItem('theme', isDark ? 'dark' : 'light')
+		const observer = new MutationObserver(() => {
+			const currentTheme = document.documentElement.classList.contains('dark')
+				? 'dark'
+				: 'light'
+			const preferredTheme = matchMediaTheme()
+
+			localStorage.setItem(
+				'theme',
+				currentTheme === preferredTheme ? 'system' : currentTheme,
+			)
+		})
+
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['class'],
+		})
+
+		const button = document.getElementById('mode-toggle')
+
+		button.addEventListener('click', () => {
+			document.documentElement.classList.add(transitionClass)
+
+			const isDark = getThemePreference() === 'dark'
+			document.documentElement.classList[isDark ? 'remove' : 'add']('dark')
+
+			setTimeout(() => {
+				document.documentElement.classList.remove(transitionClass)
 			})
-			observer.observe(document.documentElement, {
-				attributes: true,
-				attributeFilter: ['class'],
-			})
-		}
+		})
 	</script>
 </html>

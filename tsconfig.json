@@ -4,8 +4,10 @@
 		"jsx": "react-jsx",
 		"jsxImportSource": "react",
 		"baseUrl": ".",
+		"noErrorTruncation": true,
 		"paths": {
-			"@/*": ["./src/*"]
+			"@/*": ["./src/*"],
+			"$dist/*": ["./dist/*"]
 		}
 	}
 }

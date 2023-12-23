@@ -1,0 +1,16 @@
+---
+interface Props {
+	href?: string
+	title?: string
+}
+
+const { href, title } = Astro.props
+---
+
+<a
+	href={href}
+	title={title}
+	class="not-prose underline underline-offset-4"
+>
+	<slot />
+</a>

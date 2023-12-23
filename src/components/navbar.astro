@@ -1,0 +1,81 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from '@/lib/utils'
+import Discord from './icons/discord.astro'
+import Twitter from './icons/twitter.astro'
+import Github from './icons/github.astro'
+import { buttonVariants } from './ui/button'
+import { getEntry } from 'astro:content'
+import ModeToggle from './mode-toggle.astro'
+import Search from '@/components/search.astro'
+
+interface Props extends HTMLAttributes<'nav'> {
+	separator?: boolean
+}
+
+const { class: className } = Astro.props
+
+const socials = await Promise.all([
+	getEntry('socials', 'twitter'),
+	getEntry('socials', 'discord'),
+	getEntry('socials', 'github'),
+])
+
+const Icons = {
+	twitter: Twitter,
+	discord: Discord,
+	github: Github,
+} as const
+---
+
+<nav
+	class={cn(
+		'border-b flex flex-col z-10 bg-transparent backdrop-filter backdrop-blur-sm bg-opacity-30',
+		className,
+	)}
+>
+	<div class="container mx-auto grid flex-grow grid-cols-10 items-center py-2">
+		<div class="col-span-2 pr-2">
+			<a
+				href="/"
+				class={cn(
+					buttonVariants({
+						variant: 'secondary',
+					}),
+					'w-full',
+				)}
+			>
+				<span class="hidden truncate xl:block">Souls Speedrunning</span>
+				<span class="xl:hidden">SSC</span>
+			</a>
+		</div>
+		<div class="col-span-6">
+			<Search />
+		</div>
+		<ul class="col-span-2 ml-auto flex items-center">
+			{
+				socials.map((social) => {
+					const Icon = Icons[social.id]
+
+					return (
+						<li>
+							<a
+								href={social.data.link}
+								target="_blank"
+								class={buttonVariants({
+									variant: 'ghost',
+									size: 'icon',
+								})}
+							>
+								<Icon class="h-4 w-4 fill-current" />
+							</a>
+						</li>
+					)
+				})
+			}
+			<li>
+				<ModeToggle />
+			</li>
+		</ul>
+	</div>
+</nav>
