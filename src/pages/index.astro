@@ -35,7 +35,7 @@ const games = await getCollection('games')
 					href={DISCORD_INVITE}
 					target="_blank"
 					class={cn(
-						'flex items-center gap-2 dark:border-border',
+						'flex items-center gap-2 dark:border-border dark:hover:bg-accent dark:hover:text-orange-400',
 						buttonVariants({
 							variant: 'outline',
 						}),
@@ -61,7 +61,7 @@ const games = await getCollection('games')
 				<a
 					href="/contribute"
 					class={cn(
-						'group flex items-center gap-2 dark:border-border',
+						'group flex items-center gap-2 dark:border-border dark:hover:bg-accent dark:hover:text-orange-400',
 						buttonVariants({
 							variant: 'outline',
 						}),
