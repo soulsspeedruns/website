@@ -6,6 +6,7 @@ import { DISCORD_INVITE } from '@/lib/const'
 import { getCollection } from 'astro:content'
 import { Image } from 'astro:assets'
 import { cn } from '@/lib/utils'
+import soulsSpeedrunsLogo from "../images/SoulsSpeedrunsLogo.png"
 
 const games = await getCollection('games')
 ---
@@ -14,6 +15,13 @@ const games = await getCollection('games')
 	<main class="container mx-auto mt-16 py-2">
 		<div class="px-2 py-12 sm:px-6 lg:px-8">
 			<div class="mx-auto max-w-2xl text-center">
+				<Image
+					src={soulsSpeedrunsLogo}
+					width={100}
+					height={100}
+					alt={`SoulsSpeedruns Logo`}
+					class="text-center inline mb-3"
+				/>
 				<h2
 					class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"
 				>
@@ -27,7 +35,7 @@ const games = await getCollection('games')
 					href={DISCORD_INVITE}
 					target="_blank"
 					class={cn(
-						'flex items-center gap-2',
+						'flex items-center gap-2 dark:border-border',
 						buttonVariants({
 							variant: 'outline',
 						}),
@@ -53,7 +61,7 @@ const games = await getCollection('games')
 				<a
 					href="/contribute"
 					class={cn(
-						'group flex items-center gap-2',
+						'group flex items-center gap-2 dark:border-border',
 						buttonVariants({
 							variant: 'outline',
 						}),
@@ -74,8 +82,8 @@ const games = await getCollection('games')
 						<div class="absolute inset-0 bg-black" />
 						<Image
 							src={game.data.assets.background}
-							width={240}
-							height={135}
+							width={533}
+							height={300}
 							alt={`Background image of ${game.data.name}`}
 							class="h-full w-full scale-100 object-fill transition-transform duration-100 group-hover:scale-105"
 						/>
