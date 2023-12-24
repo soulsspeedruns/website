@@ -8,6 +8,8 @@ import { buttonVariants } from './ui/button'
 import { getEntry } from 'astro:content'
 import ModeToggle from './mode-toggle.astro'
 import Search from '@/components/search.astro'
+import { Image } from 'astro:assets'
+import soulsSpeedrunsLogo from "../images/SoulsSpeedrunsLogo.png"
 
 interface Props extends HTMLAttributes<'nav'> {
 	separator?: boolean
@@ -34,19 +36,24 @@ const Icons = {
 		className,
 	)}
 >
-	<div class="container mx-auto grid flex-grow grid-cols-10 items-center py-2">
-		<div class="col-span-2 pr-2">
+	<div class="container mx-auto grid flex-grow grid-cols-10 items-center py-2 ">
+		<div class="col-span-2 pr-2 ">
 			<a
 				href="/"
 				class={cn(
 					buttonVariants({
 						variant: 'secondary',
 					}),
-					'w-full',
+					'w-full dark:hover:bg-accent',
 				)}
 			>
-				<span class="hidden truncate xl:block">SoulsSpeedruns Wiki</span>
-				<span class="xl:hidden">SSC</span>
+			<Image
+				src={soulsSpeedrunsLogo}
+				width={24}
+				height={24}
+				alt={`SoulsSpeedruns Logo`}
+			/>
+				<span class="hidden truncate xl:block p-2 ">SoulsSpeedruns Wiki</span>
 			</a>
 		</div>
 		<div class="col-span-8 lg:col-span-6">

@@ -48,6 +48,8 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))',
 				},
+				'soulsspeedruns-orange': '#fe7a14',
+				'soulsspeedruns-gray': '#666666'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
