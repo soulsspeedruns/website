@@ -1,5 +1,5 @@
 ---
-title: "darksouls:Event Script And ESD Oddities"
+title: "Event Script And ESD Oddities"
 ---
 
 On this page are listed explanations of how specific parts of the game have been implemented via Event Script functions and ESD state machines, and how those implementations sometimes cause certain oddities to occur.
@@ -30,7 +30,7 @@ Offering a Lord Soul sets flag 756 to true in the ESD of the Lordvessel.
 
 Event script function 11800200 listens for flag 756 to be set and plays the offering animation. Then it checks for each Lord Soul if you own it and haven't offered it yet. If yes, for any Lord Soul you own it will set the flag that you offered it and remove it from your inventory. Then flag 756 is unset again (but only if a new Lord Soul was offered).
 
-This works normally if you can only acquire a Lord Soul once. However, by abusing **[darksouls:Drop Swap](/darksouls/drop-swap)** and the Firelink Chest you can acquire them more than once.
+This works normally if you can only acquire a Lord Soul once. However, by abusing **[Drop Swap](/darksouls/drop-swap)** and the Firelink Chest you can acquire them more than once.
 
 If a Lord Soul is offered a second time, the above function plays again, but does not conclude because no new Lord Soul is offered. Thus flag 756 stays set and every time the Kiln map is loaded anew, the offering animation will play. If the player acquires a new Lord Soul the function will resume like normal and the character will play the sitting at the bonfire animation.
 
@@ -86,7 +86,7 @@ The chest behind Frampt in Firelink is used to give the player any Key item or i
 
 This is accomplished by an Event Script Function in Firelink that checks flags (on Firelink load) whether the player should have any given item. If the player doesn't, the function adds it to the chest as an item pickup. This can be abused even without any glitches to for example acquire the Covenant of Artorias ring multiple times. By dropping it in an area adjacent to Firelink (e.g. Undead Burg) while Firelink is not loaded, then loading Firelink, the ring will be put in the chest, ready to be picked up. By then picking up the dropped ring without again unloading Firelink, or picking up the ring in Firelink first and then going back to pick up the dropped ring, you can dupe the ring.
 
-This method can be used for any item that spawns in the chest. Normally Key items and such cannot be dropped, but with **[darksouls:Drop Swap](/darksouls/drop-swap)** they can be. This isn't very useful though as Key items can only be held in the inventory a single time. As such, trying to pick them up in the chest while having the Key already in the inventory will result in the item from the chest to be dropped on the ground again instantly.
+This method can be used for any item that spawns in the chest. Normally Key items and such cannot be dropped, but with **[Drop Swap](/darksouls/drop-swap)** they can be. This isn't very useful though as Key items can only be held in the inventory a single time. As such, trying to pick them up in the chest while having the Key already in the inventory will result in the item from the chest to be dropped on the ground again instantly.
 
 ## Opening Some One-sided Doors From The "Wrong" Side
 
