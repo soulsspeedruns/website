@@ -72,7 +72,8 @@
 		@apply bg-background text-foreground;
 	}
 	a {
-		@apply text-black;
+		@apply text-blue-600;
+		@apply hover:text-blue-800;
 		@apply dark:text-orange-300;
 		@apply dark:hover:text-orange-400;
 	}
