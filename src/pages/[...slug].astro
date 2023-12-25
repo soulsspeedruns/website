@@ -26,6 +26,16 @@ const navigation = await getEntry('navigation', 'main')
 const { page } = Astro.props
 const { Content, headings } = await page.render()
 
+const filteredHeadings = headings.filter((heading) => heading.depth > 1 && heading.depth < 4)
+
+const sideBarPaddings: {[index: number]:string} = {
+	0: 'pl-0',
+	1: 'pl-0',
+	2: 'pl-0',
+	3: 'pl-2',
+	4: 'pl-4'
+}
+
 const pagefindProps = page.data.pagefind?.ignore
 	? { 'data-pagefind-ignore': true }
 	: { 'data-pagefind-body': true }
@@ -58,18 +68,20 @@ editUrl = `${editUrl}/collection/pages/item/${encodeURIComponent(page.slug)}`
 		>
 			<div class="sticky top-[calc(theme('spacing.16')+theme('spacing.2'))]">
 				{
-					headings.filter((heading) => heading.depth > 1).length > 0 && (
-						<>
-							<h4 class="font-bold">On This Page</h4>
-							<ul class="mb-3 border-b pb-3">
-								{headings.map((heading) => (
-									<li>
-										<a href={`#${heading.slug}`}>{heading.text}</a>
-									</li>
-								))}
-							</ul>
-						</>
-					)
+					<>
+						<h4 class="font-bold">On This Page</h4>
+						<ul class="mb-3 border-b pb-3">
+							{filteredHeadings.map((heading) => (
+								<li>
+									<a href={`#${heading.slug}`}
+									class={`${sideBarPaddings[heading.depth]}`}
+									>
+									{heading.text}
+									</a>
+								</li>
+							))}
+						</ul>
+					</>
 				}
 				<a href="/contribute">How To Contribute</a>
 				<a
