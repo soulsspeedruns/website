@@ -13,7 +13,7 @@ const { navigation, class: className } = Astro.props
 
 const url: string = Astro.url.pathname
 
-function getStyling(slug) {
+function getStyling(slug: string) {
 	let styling = "justify-start font-bold hover:text-blue-800 dark:hover:text-orange-400 "
 	if(url.endsWith(slug) || url.includes(slug + "/"))
 	{
