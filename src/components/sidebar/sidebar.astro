@@ -10,6 +10,17 @@ interface Props {
 }
 
 const { navigation, class: className } = Astro.props
+
+const url: string = Astro.url.pathname
+
+function getStyling(slug) {
+	let styling = "justify-start font-bold hover:text-blue-800 dark:hover:text-orange-400 "
+	if(url.endsWith(slug) || url.includes(slug + "/"))
+	{
+		styling += " bg-accent pl-4"
+	}
+	return styling
+}
 ---
 
 <ul class={cn('flex flex-col', className)}>
@@ -23,7 +34,7 @@ const { navigation, class: className } = Astro.props
 							variant: 'ghost',
 							size: 'sm',
 						}),
-						'justify-start font-bold hover:text-blue-800 dark:hover:text-orange-400',
+						getStyling(`${item.value.slug.slug}`)
 					)}
 				/>
 				{children.length > 0 && (
@@ -36,7 +47,7 @@ const { navigation, class: className } = Astro.props
 										variant: 'ghost',
 										size: 'sm',
 									}),
-									'justify-start',
+									getStyling(`${item.value.slug.slug}`)
 								)}
 							/>
 						))}
