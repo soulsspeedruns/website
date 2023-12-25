@@ -49,7 +49,11 @@ export default {
 					foreground: 'hsl(var(--card-foreground))',
 				},
 				'soulsspeedruns-orange': '#fe7a14',
-				'soulsspeedruns-gray': '#666666'
+				'soulsspeedruns-gray': '#666666',
+				// 'soulsspeedruns-links':
+				// 'soulsspeedruns-links-hover':
+				// 'soulsspeedruns-links-dark':
+				// 'soulsspeedruns-links-dark-hover':
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
