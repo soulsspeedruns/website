@@ -25,7 +25,7 @@ const { item, class: className, currentPathname, ...props } = Astro.props
 		}),
 		'justify-start font-bold hover:text-blue-800 dark:hover:text-orange-400',
 		{
-			'bg-accent pl-4': currentPathname === `/${item.value.slug.slug}`,
+			'bg-accent': currentPathname?.startsWith(`/${item.value.slug.slug}/`),
 		},
 		className,
 	)}

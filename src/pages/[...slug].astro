@@ -36,8 +36,8 @@ const pagefindProps = page.data.pagefind?.ignore
 	: { 'data-pagefind-body': true }
 
 let pathname = Astro.url.pathname.endsWith('/')
-	? Astro.url.pathname.slice(0, -1)
-	: Astro.url.pathname
+	? Astro.url.pathname
+	: Astro.url.pathname + '/'
 
 let editUrl = '/keystatic'
 
@@ -79,8 +79,7 @@ editUrl = `${editUrl}/collection/pages/item/${encodeURIComponent(page.slug)}`
 										<a
 											href={`#${heading.slug}`}
 											class={cn({
-												'pl-2': heading.depth === 3,
-												'pl-4': heading.depth === 4,
+												'pl-2': heading.depth === 3
 											})}
 										>
 											{heading.text}
