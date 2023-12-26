@@ -1,0 +1,15 @@
+---
+import {
+	YouTube as YouTubePreview,
+	type Props as YouTubePreviewProps,
+} from '@/components/markdoc/youtube.preview'
+
+type Props = YouTubePreviewProps
+
+const { src } = Astro.props
+---
+
+<YouTubePreview
+	src={src}
+	client:idle
+/>

@@ -8,7 +8,8 @@
 		"paths": {
 			"@/*": ["./src/*"],
 			"$dist/*": ["./dist/*"],
-			"keystatic.config": ["./keystatic.config.ts"]
+			"keystatic.config": ["keystatic.config.tsx"]
 		}
-	}
+	},
+	"exclude": ["public/pagefind"]
 }

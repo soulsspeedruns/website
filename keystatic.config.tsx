@@ -8,14 +8,24 @@ export default config({
 		process.env.NODE_ENV === 'development'
 			? {
 					kind: 'local',
-			  }
+				}
 			: {
 					kind: 'github',
 					repo: 'soulsspeedruns/website',
 					branchPrefix: 'wiki/',
-			  },
+				},
 	ui: {
-		brand: { name: 'Souls Speedruns' },
+		brand: {
+			name: 'Souls Speedruns',
+			mark: () => {
+				return (
+					<img
+						src="/logo.png"
+						height={24}
+					/>
+				)
+			},
+		},
 	},
 	collections: {
 		pages,

@@ -1,0 +1,7 @@
+<script is:inline>
+	if (!('PagefindUI' in window)) {
+		const search = document.getElementById('search')
+		search.innerText =
+			'The pagefind build was not found. Run the pagefind:local npm script to get pagefind to work in dev.'
+	}
+</script>

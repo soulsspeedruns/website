@@ -2,25 +2,14 @@
 import { cn } from '@/lib/utils'
 import type { CollectionEntry } from 'astro:content'
 import SidebarItem from '@/components/sidebar/sidebar-item.astro'
-import { buttonVariants } from '../ui/button'
 
 interface Props {
 	navigation: CollectionEntry<'navigation'>
 	class?: string | undefined
+	currentPathname?: string
 }
 
-const { navigation, class: className } = Astro.props
-
-const url: string = Astro.url.pathname
-
-function getStyling(slug: string) {
-	let styling = "justify-start font-bold hover:text-blue-800 dark:hover:text-orange-400 "
-	if(url.endsWith(slug) || url.includes(slug + "/"))
-	{
-		styling += " bg-accent pl-4"
-	}
-	return styling
-}
+const { navigation, currentPathname, class: className } = Astro.props
 ---
 
 <ul class={cn('flex flex-col', className)}>
@@ -29,26 +18,14 @@ function getStyling(slug: string) {
 			<li class="flex flex-col items-stretch">
 				<SidebarItem
 					item={item}
-					class={cn(
-						buttonVariants({
-							variant: 'ghost',
-							size: 'sm',
-						}),
-						getStyling(`${item.value.slug.slug}`)
-					)}
+					currentPathname={currentPathname}
 				/>
 				{children.length > 0 && (
 					<>
 						{children.map((item) => (
 							<SidebarItem
 								item={item}
-								class={cn(
-									buttonVariants({
-										variant: 'ghost',
-										size: 'sm',
-									}),
-									getStyling(`${item.value.slug.slug}`)
-								)}
+								currentPathname={currentPathname}
 							/>
 						))}
 					</>

@@ -9,9 +9,10 @@
 		"astro": "astro",
 		"format": "prettier --write . --plugin=prettier-plugin-astro --plugin=prettier-plugin-tailwindcss",
 		"postbuild": "pagefind --site .vercel/output/static",
-		"pagefind:local": "cp -r .vercel/output/static/pagefind public/pagefind"
+		"pagefind:local": "pnpm build && cp -r .vercel/output/static/pagefind public/pagefind"
 	},
 	"dependencies": {
+		"@astro-community/astro-embed-youtube": "^0.4.3",
 		"@astrojs/check": "^0.3.1",
 		"@astrojs/markdoc": "^0.7.1",
 		"@astrojs/node": "^6.0.3",
@@ -35,11 +36,14 @@
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
 		"cmdk": "^0.2.0",
+		"get-youtube-id": "^1.0.1",
 		"iron-webcrypto": "^1.0.0",
+		"lite-youtube-embed": "^0.3.0",
 		"lucide-react": "^0.292.0",
 		"nanostores": "^0.9.5",
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0",
+		"react-lite-youtube-embed": "^2.4.0",
 		"sharp": "^0.32.6",
 		"solid-js": "^1.4.3",
 		"tailwind-merge": "^2.0.0",
@@ -51,7 +55,8 @@
 		"pagefind": "^1.0.3",
 		"prettier": "^3.0.3",
 		"prettier-plugin-astro": "^0.12.1",
-		"prettier-plugin-tailwindcss": "^0.5.7"
+		"prettier-plugin-tailwindcss": "^0.5.7",
+		"vercel": "^33.0.1"
 	},
 	"prettier": {
 		"singleQuote": true,
