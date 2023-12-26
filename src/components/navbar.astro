@@ -1,12 +1,12 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
 import { cn } from '@/lib/utils'
-import Discord from './icons/discord.astro'
-import Twitter from './icons/twitter.astro'
-import Github from './icons/github.astro'
-import { buttonVariants } from './ui/button'
+import Discord from '@/components/icons/discord.astro'
+import Twitter from '@/components/icons/twitter.astro'
+import Github from '@/components/icons/github.astro'
+import { buttonVariants } from '@/components/ui/button'
 import { getEntry } from 'astro:content'
-import ModeToggle from './mode-toggle.astro'
+import { ModeToggle } from '@/components/mode-toggle'
 import Search from '@/components/search.astro'
 import { Image } from 'astro:assets'
 import soulsSpeedrunsLogo from '../images/SoulsSpeedrunsLogo.png'
@@ -87,7 +87,7 @@ const Icons = {
 				})
 			}
 			<li>
-				<ModeToggle />
+				<ModeToggle client:idle />
 			</li>
 		</ul>
 	</div>
