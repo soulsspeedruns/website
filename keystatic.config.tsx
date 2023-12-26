@@ -16,7 +16,7 @@ export default config({
 				},
 	ui: {
 		brand: {
-			name: 'Souls Speedruns',
+			name: 'SoulsSpeedruns',
 			mark: () => {
 				return (
 					<img
