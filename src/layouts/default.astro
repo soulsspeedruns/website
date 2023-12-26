@@ -57,58 +57,20 @@ const { title } = Astro.props
 		})
 	</script>
 	<script is:inline>
-		const transitionClass = '[&_*]:!transition-none'
+		const key = 'keystatic-color-scheme'
 
-		const matchMediaTheme = () => {
+		const getThemePreference = () => {
+			if (typeof localStorage !== 'undefined' && localStorage.getItem(key)) {
+				const theme = localStorage.getItem(key)
+				if (theme !== 'auto') return theme
+			}
+
 			return window.matchMedia('(prefers-color-scheme: dark)').matches
 				? 'dark'
 				: 'light'
 		}
 
-		const getThemePreference = () => {
-			if (
-				typeof localStorage !== 'undefined' &&
-				localStorage.getItem('theme') &&
-				localStorage.getItem('theme') !== 'system'
-			) {
-				return localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'
-			}
-
-			return matchMediaTheme()
-		}
-
 		const isDark = getThemePreference() === 'dark'
 		document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
-		document.documentElement.classList.remove(transitionClass)
-
-		const observer = new MutationObserver(() => {
-			const currentTheme = document.documentElement.classList.contains('dark')
-				? 'dark'
-				: 'light'
-			const preferredTheme = matchMediaTheme()
-
-			localStorage.setItem(
-				'theme',
-				currentTheme === preferredTheme ? 'system' : currentTheme,
-			)
-		})
-
-		observer.observe(document.documentElement, {
-			attributes: true,
-			attributeFilter: ['class'],
-		})
-
-		const button = document.getElementById('mode-toggle')
-
-		button.addEventListener('click', () => {
-			document.documentElement.classList.add(transitionClass)
-
-			const isDark = getThemePreference() === 'dark'
-			document.documentElement.classList[isDark ? 'remove' : 'add']('dark')
-
-			setTimeout(() => {
-				document.documentElement.classList.remove(transitionClass)
-			})
-		})
 	</script>
 </html>
