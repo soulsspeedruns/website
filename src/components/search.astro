@@ -2,6 +2,7 @@
 import { Search as SearchIcon } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import SearchDevWarning from '@/components/search-dev-warning.astro'
 ---
 
 <button
@@ -30,6 +31,8 @@ import { cn } from '@/lib/utils'
 	</div>
 </dialog>
 
+{process.env.NODE_ENV === 'development' && <SearchDevWarning />}
+
 <script>
 	import { isOpen } from '@/stores/search'
 
@@ -43,8 +46,6 @@ import { cn } from '@/lib/utils'
 
 			if (!dialog.open) dialog.showModal()
 			document.documentElement.classList.add('overflow-hidden')
-			// document.documentElement.classList.add('blur-[2px]')
-
 			document.documentElement.style.setProperty(
 				'--removed-body-scroll-bar-size',
 				`${scrollWidth}px`,
@@ -52,7 +53,6 @@ import { cn } from '@/lib/utils'
 		} else {
 			if (dialog.open) dialog.close()
 			document.documentElement.classList.remove('overflow-hidden')
-			// document.documentElement.classList.remove('blur-[2px]')
 			document.documentElement.style.removeProperty(
 				'--removed-body-scroll-bar-size',
 			)

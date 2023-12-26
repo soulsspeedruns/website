@@ -1,4 +1,5 @@
-import { collection, fields } from '@keystatic/core'
+import { collection, component, fields } from '@keystatic/core'
+import { YouTube as YouTubePreview } from '@/components/markdoc/youtube.preview'
 
 export const pages = collection({
 	label: 'Pages',
@@ -35,6 +36,35 @@ export const pages = collection({
 			images: {
 				directory: 'public/pages',
 				publicPath: '/pages',
+			},
+			componentBlocks: {
+				icon: component({
+					preview: () => null,
+					label: 'Icon',
+					schema: {
+						name: fields.text({
+							label: 'Icon name',
+							description: 'An icon name from the lucide.dev icon library',
+						}),
+					},
+				}),
+				youtube: component({
+					preview: ({ fields }) => {
+						return <YouTubePreview src={fields.src.value} />
+					},
+					label: 'Youtube',
+					schema: {
+						src: fields.text({
+							label: 'Source',
+							description: 'Link to the YouTube video',
+							validation: {
+								length: {
+									min: 0,
+								},
+							},
+						}),
+					},
+				}),
 			},
 		}),
 		hidden: fields.checkbox({

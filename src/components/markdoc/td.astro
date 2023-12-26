@@ -1,0 +1,27 @@
+---
+import { TableCell } from '@/components/ui/table'
+import { z } from 'astro:content'
+
+const schema = z
+	.object({
+		align: z
+			.enum(['left', 'center', 'right', 'justify', 'char'])
+			.optional()
+			.catch(undefined),
+		colspan: z.coerce.number().optional().catch(undefined),
+		rowSpan: z.coerce.number().optional().catch(undefined),
+	})
+	.transform(({ colspan: colSpan, rowSpan: rowSpan, ...other }) => ({
+		colSpan,
+		rowSpan,
+		...other,
+	}))
+
+export type Props = z.infer<typeof schema>
+
+const props = schema.parse(Astro.props)
+---
+
+<TableCell {...props}>
+	<slot />
+</TableCell>

@@ -1,6 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import SidebarPageItem from '@/components/sidebar/sidebar-page-item.astro'
+import { cn } from '@/lib/utils'
+import { buttonVariants } from '@/components/ui/button'
 
 export type NavigationItem =
 	CollectionEntry<'navigation'>['data']['items'][number]['item']
@@ -8,12 +10,24 @@ export type NavigationItem =
 interface Props {
 	item: NavigationItem
 	class?: string
+	currentPathname?: string
 }
 
-const { item, ...props } = Astro.props
+const { item, class: className, currentPathname, ...props } = Astro.props
 ---
 
 <SidebarPageItem
 	item={item}
+	class={cn(
+		buttonVariants({
+			variant: 'ghost',
+			size: 'sm',
+		}),
+		'justify-start font-bold hover:text-blue-800 dark:hover:text-orange-400',
+		{
+			'bg-accent pl-4': currentPathname === `/${item.value.slug.slug}`,
+		},
+		className,
+	)}
 	{...props}
 />
