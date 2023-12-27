@@ -5,6 +5,7 @@ import react from '@astrojs/react'
 import vercel from '@astrojs/vercel/serverless'
 import prefetch from '@astrojs/prefetch'
 import sitemap from '@astrojs/sitemap'
+import { MagicRegExpTransformPlugin } from 'magic-regexp/transform'
 
 const vite: ViteUserConfig = {
 	server: {
@@ -12,6 +13,7 @@ const vite: ViteUserConfig = {
 			allow: ['../'],
 		},
 	},
+	plugins: [MagicRegExpTransformPlugin.vite()],
 }
 
 // https://astro.build/config

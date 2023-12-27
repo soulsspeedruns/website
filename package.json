@@ -41,6 +41,7 @@
 		"iron-webcrypto": "^1.0.0",
 		"lite-youtube-embed": "^0.3.0",
 		"lucide-react": "^0.292.0",
+		"magic-regexp": "^0.7.0",
 		"nanostores": "^0.9.5",
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0",
@@ -70,5 +71,8 @@
 			"prettier-plugin-astro",
 			"prettier-plugin-tailwindcss"
 		]
+	},
+	"volta": {
+		"node": "20.10.0"
 	}
 }
