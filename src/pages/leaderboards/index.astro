@@ -1,0 +1,20 @@
+---
+import Layout from '@/layouts/default.astro'
+import { getCollection } from 'astro:content'
+
+const games = await getCollection('games')
+---
+
+<Layout title="Leaderboards">
+	<main class="mt-20">
+		<ul>
+			{
+				games.map((game) => (
+					<li>
+						<a href={`/leaderboards/${game.id}`}>{game.data.name}</a>
+					</li>
+				))
+			}
+		</ul>
+	</main>
+</Layout>

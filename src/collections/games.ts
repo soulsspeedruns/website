@@ -10,6 +10,10 @@ export const games = collection({
 				label: 'Name',
 			},
 		}),
+		speedrundotcomId: fields.text({
+			label: 'Speedrun.com ID',
+			description: "If no id is provided, the game's slug will be used",
+		}),
 		homepage: fields.relationship({
 			label: 'Homepage',
 			collection: 'pages',

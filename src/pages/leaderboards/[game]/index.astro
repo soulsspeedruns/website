@@ -1,0 +1,29 @@
+---
+import type { GetStaticPaths } from 'astro'
+import Layout from '@/layouts/default.astro'
+import Leaderboard from '@/components/leaderboards/leaderboard.astro'
+import { getCollection } from 'astro:content'
+
+export const getStaticPaths = (async () => {
+	const games = await getCollection('games')
+
+	return games.map((game) => {
+		return {
+			params: {
+				game: game.id,
+			},
+			props: {
+				game,
+			},
+		}
+	})
+}) satisfies GetStaticPaths
+
+const { game } = Astro.props
+---
+
+<Layout title={`${game.data.name} Leaderboards - Souls Speedruns`}>
+	<main class="container mx-auto mt-20">
+		<Leaderboard game={game} />
+	</main>
+</Layout>

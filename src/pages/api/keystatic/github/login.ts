@@ -1,7 +1,7 @@
 /**
  * This whole thing is a work around to fix the following issue:
  * https://github.com/Thinkmill/keystatic/issues/835
- * 
+ *
  * TODO remove when fixed by keystatic
  */
 import type { APIRoute } from 'astro'

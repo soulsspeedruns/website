@@ -1,0 +1,39 @@
+---
+import { createRoutes } from '@/components/leaderboards/routes'
+import { App } from './app'
+import { createStaticHandler } from 'react-router-dom/server'
+import type { CollectionEntry } from 'astro:content'
+
+export type Props = {
+	game: CollectionEntry<'games'>
+}
+
+const { game } = Astro.props
+const basename = `/leaderboards/${game.id}`
+
+const routes = createRoutes({ game })
+const { query, dataRoutes } = createStaticHandler(routes, { basename })
+
+const url = new URL(Astro.url)
+const category = url.searchParams.get('category')
+
+if (category) {
+	url.searchParams.delete('category')
+	url.pathname = `${basename}/${category}`
+}
+
+const request = new Request(url, Astro.request)
+const context = await query(request)
+
+if (context instanceof Response) {
+	throw context
+}
+---
+
+<App
+	game={game}
+	basename={basename}
+	dataRoutes={dataRoutes}
+	context={context}
+	client:idle
+/>

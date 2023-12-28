@@ -1,3 +1,10 @@
 {
-	"$schema": "https://openapi.vercel.sh/vercel.json"
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"rewrites": [
+		{
+			"source": "/leaderboards/:game/:category",
+			"destination": "/leaderboards/:game?category=$2",
+			"statusCode": 200
+		}
+	]
 }

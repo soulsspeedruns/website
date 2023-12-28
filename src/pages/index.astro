@@ -44,20 +44,6 @@ const games = await getCollection('games')
 					<Discord class="h-4 w-4 fill-current" />
 					 Discord
 				</a>
-				<!-- <a
-					href="/getting-started"
-					class={cn(
-						'group flex items-center gap-2',
-						buttonVariants({
-							variant: 'outline',
-						}),
-					)}
-				>
-					Getting started
-					<ArrowRightIcon
-						className="h-4 w-4 transition-transform group-hover:translate-x-1"
-					/>
-				</a> -->
 				<a
 					href="/contribute"
 					class={cn(
@@ -85,7 +71,7 @@ const games = await getCollection('games')
 							width={533}
 							height={300}
 							alt={`Background image of ${game.data.name}`}
-							class="h-full w-full scale-100 object-fill transition-transform duration-100 group-hover:scale-105"
+							class="h-full w-full scale-100 object-fill transition-transform duration-200 group-hover:scale-105"
 						/>
 						<div class="absolute inset-0 flex items-center justify-center bg-black/25 p-6 text-center">
 							<h2 class="text-xl font-bold text-white">{game.data.name}</h2>

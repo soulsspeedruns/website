@@ -23,7 +23,7 @@ const { item, class: className, currentPathname, ...props } = Astro.props
 			variant: 'ghost',
 			size: 'sm',
 		}),
-		'justify-start font-bold hover:text-blue-800 dark:hover:text-orange-400',
+		'truncate justify-start font-bold hover:text-blue-800 dark:hover:text-orange-400',
 		{
 			'bg-accent': currentPathname?.startsWith(`/${item.value.slug.slug}/`),
 		},
