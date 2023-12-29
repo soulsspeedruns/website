@@ -69,7 +69,6 @@ export async function search(value: string) {
 		})
 
 		pagefind.init()
-		console.log(pagefind)
 	}
 
 	const { results } = await pagefind.search(value)

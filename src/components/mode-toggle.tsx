@@ -59,7 +59,6 @@ export function ModeToggle() {
 
 	useEffect(() => {
 		const onMediaChange = ({ matches }: MediaQueryListEvent) => {
-			console.log('on media change focus')
 			if (localStorage.getItem(key) === 'auto') {
 				noTransition(() => {
 					document.documentElement.classList[matches ? 'add' : 'remove']('dark')
@@ -68,7 +67,6 @@ export function ModeToggle() {
 		}
 
 		const onFocus = () => {
-			console.log('on focus')
 			const theme = getItem()
 			if (theme) setTheme(theme)
 		}

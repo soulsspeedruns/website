@@ -21,7 +21,6 @@ let localImage: LocalImage | null = null
 try {
 	const mod = await import(/* @vite-ignore */ Astro.props.src)
 	localImage = schema.parse(mod.default)
-	console.log(localImage)
 } catch {
 	// fallback to normal image
 }
