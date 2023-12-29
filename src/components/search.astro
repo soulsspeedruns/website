@@ -21,10 +21,11 @@ import SearchDevWarning from '@/components/search-dev-warning.astro'
 <dialog
 	id="search-dialog"
 	class="relative backdrop:bg-black backdrop:opacity-75"
+	transition:persist
 >
 	<div
 		id="search-wrapper"
-		class="fixed inset-0 mx-auto max-w-screen-lg px-2 py-2 lg:py-10"
+		class="fixed inset-0 mx-auto max-w-screen-md px-2 py-2 lg:py-10"
 	>
 		<div
 			id="search"
@@ -38,16 +39,45 @@ import SearchDevWarning from '@/components/search-dev-warning.astro'
 
 <script>
 	import { isOpen } from '@/stores/search'
+	import { PagefindUI } from '@pagefind/default-ui'
+	import { navigate } from 'astro:transitions/client'
+
+	function createPagefindUI() {
+		const search = document.getElementById('search') as HTMLDivElement
+		search.innerHTML = ''
+
+		new PagefindUI({
+			element: search,
+			showSubResults: true,
+			showImages: false,
+			debounceTimeoutMs: 500,
+		})
+	}
+
+	function isAnchor(target: EventTarget | null): target is HTMLAnchorElement {
+		return target instanceof HTMLAnchorElement
+	}
+
+	document.addEventListener('astro:page-load', () => {
+		createPagefindUI()
+	})
 
 	const button = document.getElementById('search-button') as HTMLButtonElement
 	const dialog = document.getElementById('search-dialog') as HTMLDialogElement
 	const search = document.getElementById('search') as HTMLDivElement
 
-	dialog?.addEventListener('click', () => {
+	dialog.addEventListener('click', () => {
 		isOpen.set(false)
 	})
 
-	search?.addEventListener('click', (e) => {
+	search.addEventListener('click', (e) => {
+		if (isAnchor(e.target) && e.target.href) {
+			e.preventDefault()
+			navigate(e.target.href)
+			isOpen.set(false)
+			return
+		}
+
 		e.stopPropagation()
 	})
 
