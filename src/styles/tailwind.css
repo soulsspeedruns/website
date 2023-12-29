@@ -36,6 +36,8 @@
 		--pagefind-ui-image-border-radius: theme('borderRadius.lg');
 		--pagefind-ui-image-box-ratio: 3 / 2;
 		--pagefind-ui-font: sans-serif;
+
+		--nprogress-color: theme('colors.blue.500');
 	}
 
 	.dark {
@@ -61,6 +63,8 @@
 
 		--pagefind-ui-border: #152028;
 		--pagefind-ui-tag: #152028;
+
+		--nprogress-color: theme('colors.orange.400');
 	}
 }
 

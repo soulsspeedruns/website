@@ -87,7 +87,10 @@ const Icons = {
 				})
 			}
 			<li>
-				<ModeToggle client:idle />
+				<ModeToggle
+					transition:persist
+					client:idle
+				/>
 			</li>
 		</ul>
 	</div>

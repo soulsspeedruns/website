@@ -1,6 +1,8 @@
 ---
 import '@/styles/tailwind.css'
+import '@/styles/nprogress.css'
 import Navbar from '@/components/navbar.astro'
+import { ViewTransitions } from 'astro:transitions'
 
 interface Props {
 	title: string
@@ -12,6 +14,7 @@ const { title } = Astro.props
 <html
 	lang="en"
 	class="scroll-pt-[calc(theme('spacing.16')+theme('spacing.2'))] [&_*]:!transition-none"
+	transition:name="none"
 >
 	<head>
 		<meta charset="utf-8" />
@@ -40,6 +43,7 @@ const { title } = Astro.props
 			is:inline
 			src="/pagefind/pagefind-ui.js"
 		></script>
+		<ViewTransitions fallback="swap" />
 		<title>{title}</title>
 	</head>
 	<body class="!mr-[var(--removed-body-scroll-bar-size,'0px')]">
@@ -47,30 +51,45 @@ const { title } = Astro.props
 			class="fixed left-0 right-0 top-0 !mr-[var(--removed-body-scroll-bar-size,'0px')] h-16"
 		/>
 		<slot />
-	</body>
-	<script is:inline>
-		window.addEventListener('DOMContentLoaded', () => {
-			new PagefindUI({
-				element: '#search',
-				showSubResults: true,
-			})
-		})
-	</script>
-	<script is:inline>
-		const key = 'keystatic-color-scheme'
+		<script>
+			import NProgress from 'nprogress'
 
-		const getThemePreference = () => {
-			if (typeof localStorage !== 'undefined' && localStorage.getItem(key)) {
-				const theme = localStorage.getItem(key)
-				if (theme !== 'auto') return theme
+			NProgress.configure({
+				showSpinner: false,
+			})
+
+			document.addEventListener('astro:before-preparation', () => {
+				NProgress.start()
+			})
+
+			document.addEventListener('astro:page-load', () => {
+				NProgress.done()
+			})
+		</script>
+		<script is:inline>
+			function getThemePreference() {
+				const key = 'keystatic-color-scheme'
+
+				if (typeof localStorage !== 'undefined' && localStorage.getItem(key)) {
+					const theme = localStorage.getItem(key)
+					if (theme !== 'auto') return theme
+				}
+
+				return window.matchMedia('(prefers-color-scheme: dark)').matches
+					? 'dark'
+					: 'light'
 			}
 
-			return window.matchMedia('(prefers-color-scheme: dark)').matches
-				? 'dark'
-				: 'light'
-		}
+			function setDarkMode(document) {
+				const isDark = getThemePreference() === 'dark'
+				document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
+			}
 
-		const isDark = getThemePreference() === 'dark'
-		document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
-	</script>
+			setDarkMode(document)
+
+			document.addEventListener('astro:before-swap', (ev) => {
+				setDarkMode(ev.newDocument)
+			})
+		</script>
+	</body>
 </html>

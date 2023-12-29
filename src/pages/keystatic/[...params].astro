@@ -47,7 +47,6 @@ if (config.storage.kind === 'github' && accessToken) {
 
 			Astro.response.status = 403
 		} else {
-			console.log(e)
 			throw e
 		}
 	}
