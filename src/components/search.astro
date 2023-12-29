@@ -22,7 +22,10 @@ import SearchDevWarning from '@/components/search-dev-warning.astro'
 	id="search-dialog"
 	class="relative backdrop:bg-black backdrop:opacity-75"
 >
-	<div class="fixed inset-0 mx-auto max-w-screen-lg px-2 py-2 lg:py-10">
+	<div
+		id="search-wrapper"
+		class="fixed inset-0 mx-auto max-w-screen-lg px-2 py-2 lg:py-10"
+	>
 		<div
 			id="search"
 			class="max-h-[calc(100vh-theme('spacing.4'))] w-full overflow-y-auto rounded-xl border bg-background p-2 shadow lg:max-h-[calc(100vh-theme('spacing.20'))]"
@@ -36,8 +39,17 @@ import SearchDevWarning from '@/components/search-dev-warning.astro'
 <script>
 	import { isOpen } from '@/stores/search'
 
-	const button = document.getElementById('search-button')! as HTMLButtonElement
-	const dialog = document.getElementById('search-dialog')! as HTMLDialogElement
+	const button = document.getElementById('search-button') as HTMLButtonElement
+	const dialog = document.getElementById('search-dialog') as HTMLDialogElement
+	const search = document.getElementById('search') as HTMLDivElement
+
+	dialog?.addEventListener('click', () => {
+		isOpen.set(false)
+	})
+
+	search?.addEventListener('click', (e) => {
+		e.stopPropagation()
+	})
 
 	isOpen.subscribe((value) => {
 		if (value) {
