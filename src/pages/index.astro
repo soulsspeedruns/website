@@ -2,13 +2,13 @@
 import Layout from '@/layouts/default.astro'
 import Discord from '@/components/icons/discord.astro'
 import { buttonVariants } from '@/components/ui/button'
-import { DISCORD_INVITE } from '@/lib/const'
-import { getCollection } from 'astro:content'
+import { getCollection, getEntry } from 'astro:content'
 import { Image } from 'astro:assets'
 import { cn } from '@/lib/utils'
 import soulsSpeedrunsLogo from '@/images/SoulsSpeedrunsLogo.png'
 
 const games = await getCollection('games')
+const discord = await getEntry('socials', 'discord')
 ---
 
 <Layout title="SoulsSpeedruns Wiki">
@@ -32,7 +32,7 @@ const games = await getCollection('games')
 			</div>
 			<div class="mt-10 flex items-center justify-center gap-x-2">
 				<a
-					href={DISCORD_INVITE}
+					href={discord.data.link}
 					target="_blank"
 					class={cn(
 						'flex items-center gap-2 dark:border-border dark:hover:bg-accent dark:text-orange-300 dark:hover:text-orange-400 text-foreground ',

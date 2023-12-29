@@ -11,5 +11,5 @@
 			"keystatic.config": ["keystatic.config.tsx"]
 		}
 	},
-	"exclude": ["public/pagefind"]
+	"exclude": ["public/pagefind", "dist"]
 }
