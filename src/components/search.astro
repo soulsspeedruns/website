@@ -13,6 +13,7 @@ import SearchDevWarning from '@/components/search-dev-warning.astro'
 		}),
 		'w-full justify-start bg-background border-border',
 	)}
+	transition:persist
 >
 	<SearchIcon className="mr-2 h-4 w-4" />
 	<span class="text-sm opacity-50">Search...</span>
@@ -25,7 +26,7 @@ import SearchDevWarning from '@/components/search-dev-warning.astro'
 >
 	<div
 		id="search-wrapper"
-		class="fixed inset-0 mx-auto max-w-screen-md px-2 py-2 lg:py-10"
+		class="fixed inset-0 mx-auto max-w-2xl px-2 py-2 lg:py-10"
 	>
 		<div
 			id="search"
