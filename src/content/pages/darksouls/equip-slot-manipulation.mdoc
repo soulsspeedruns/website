@@ -30,9 +30,7 @@ Once your inventory is overloaded, you need to follow these steps:
 
 As mentioned in **Procedure**, in order to be able to equip any item in any slot, the equipment menu has to stay opened during the entire process of ESM. If the menu is closed, the choice of possible equip manipulations is somewhat limited. For example trying to equip weapons into the armor slot that have a corresponding armor ID will fail due to the weapons with valid IDs simply not being listed as options. Staying in the menu keeps all options available to the player. This also allows to equip weapons into ammunition slots and they will be properly displayed on the back of the character since arrows/bolts are considered the same item type as weapons. Weapons will not be of any particular use in that slot but may be appealing fashion options as they do not incur any equip load when equipped there.
 
-**Accessing Spells, Keys or other non-consumable Goods**
-
----
+#### Accessing Spells, Keys or other non-consumable Goods
 
 In order to equip all possible Goods the player carries right now in any given slot (i.e. Keys, Spells, ...) and not only consumables, the player has to essentially perform ESM twice in a row. Follow these steps:
 
@@ -50,9 +48,7 @@ This allows you to equip Keys for example in your arrow slot, or Spells in armor
 
 **Discovered by: Androv**
 
-**Items equipped as Ammo and their corresponding model types**
-
----
+#### **Items equipped as Ammo and their corresponding model types**
 
 If an item is equipped as ammunition, then different items will actually result in different arrow/bolt models being shown when drawing the bow/crossbow.
 
@@ -159,98 +155,58 @@ Now you have what is referred to as a Stale Index for every remaining hotbar slo
 ![](/pages/darksouls/equip-slot-manipulation/ESMConversionGraphicWithArmor.jpg)
 
 {% table %}
-- Consumables <-> Rings Table
 ---
-- ID Consumable Direction Ring
-  100 White Sign Soapstone <--> Havel's Ring
-  101 Red Sign Soapstone <--> Red Tearstone Ring
-  102 Red Eye Orb <--> Darkmoon Blade Covenant Ring
-  103 Black Separation Crystal <--> Cat Covenant Ring
-  106 Orange Guidance Soapstone <--> Thunder Stoneplate Ring
-  108 Book of the Guilty <--> Speckled Stoneplate Ring
-  109 Eye of Death <--> Bloodbite Ring
-  111 Cracked Red Eye Orb <--> Tiny Being's Ring
-  113 Blue Eye Orb <--> Cursebite Ring
-  114 Dragon Eye <--> White Seance Ring
-  115 Black Eye Orb <--> Bellowing Dragoncrest Ring
-  116 Black Eye Orb <--> Dusk Crown Ring
-  117 Darksign <--> Hornet Ring
+- ID
+- Consumable
+- Direction
+- Ring
+---
+- 100
+- White Sign Soapstone
+- <-->
+- Havel's Ring
+---
+- 101
+- Red Sign Soapstone
+- <-->
+- Red Tearstone Ring
+---
+- 102
+- Red Eye Orb
+- <-->
+- Darkmoon Blade Covenant Ring
+---
+- 103
+- Black Separation Crystal
+- <-->
+- Cat Covenant Ring
+---
+- 106
+- Orange Guidance Soapstone
+- <-->
+- Thunder Stoneplate Ring
+---
+- 108
+- Book of the Guilty
+- <-->
+- Speckled Stoneplate Ring
+---
+- ID Consumable Direction Ring 100 White Sign Soapstone <--> Havel's Ring 101 Red Sign Soapstone <--> Red Tearstone Ring 102 Red Eye Orb <--> Darkmoon Blade Covenant Ring 103 Black Separation Crystal <--> Cat Covenant Ring 106 Orange Guidance Soapstone <--> Thunder Stoneplate Ring 108 Book of the Guilty <--> Speckled Stoneplate Ring 109 Eye of Death <--> Bloodbite Ring 111 Cracked Red Eye Orb <--> Tiny Being's Ring 113 Blue Eye Orb <--> Cursebite Ring 114 Dragon Eye <--> White Seance Ring 115 Black Eye Orb <--> Bellowing Dragoncrest Ring 116 Black Eye Orb <--> Dusk Crown Ring 117 Darksign <--> Hornet Ring
+- 
+- 
+- 
 {% /table %}
 
 {% table %}
 - Armor <-> Weapons Table
 ---
-- The weapons to armor conversion is only possible if the equipment menu stays open during the entire ESM process.ID Armor Direction Weapon
-  100000 Helm of Favor <--> Dagger
-  101000 Embraced Armor of Favor <--> Parrying Dagger
-  102000 Gauntlets of Favor <--> Ghost Blade
-  103000 Leggings of Favor <--> Bandit's Knife
-  200000 Helm of Thorns <--> Shortsword
-  201000 Armor of Thorns <--> Longsword
-  202000 Gauntlets of Thorns <--> Broadsword
-  203000 Leggings of Thorns <--> Broken Straight Sword
-  210000 Standard Helm <--> Darksword
-  211000 Hard Leather Armor <--> Drake Sword
-  212000 Hard Leather Gauntlets <--> Straight Sword Hilt
-  300000 Thief Mask <--> Bastard Sword
-  301000 Black Leather Armor <--> Claymore
-  302000 Black Leather Gloves <--> Man-serpent Greatsword
-  303000 Black Leather Boots <--> Flamberge
-  310000 Priest's Hat <--> Black Knight Sword
-  311000 Holy Robe <--> Greatsword of Artorias
-  312000 Traveling Gloves <--> Greatsword of Artorias
-  350000 Elite Knight Helm <--> Zweihander
-  351000 Elite Knight Armor <--> Greatsword
-  352000 Elite Knight Gauntlets <--> Demon Great Machete
-  400000 Dingy Hood <--> Scimitar
-  401000 Dingy Robe <--> Falchion
-  402000 Dingy Gloves <--> Shotel
-  403000 Blood-Stained Skirt <--> Jagged Ghost Blade
-  450000 Brass Helm <--> Server
-  451000 Brass Armor <--> Murakumo
-  453000 Brass Leggings <--> Gravelord Sword
-  500000 Hollow Thief's Hood <--> Uchigatana
-  501000 Hollow Thief's Leather Armor <--> Washing Pole
-  503000 Hollow Thief's Tights <--> Chaos Blade
-  600000 Mask of the Mother <--> Mail Breaker
-  700000 - <--> Hand Axe
-  701000 - <--> Battle Axe
-  702000 - <--> Crescent Axe
-  703000 - <--> Butcher Knife
-  900000 Head <--> Fists
-  901000 Body <--> Caestus
-  902000 Arms <--> Claw
-  903000 Legs <--> Dragon Bone Fist
-  1000000 Dragon Head <--> Spear
-  1001000 Dragon Body <--> Winged Spear
-  1002000 Dragon Arms <--> Partizan
-  1003000 Dragon Legs <--> Demon's Spear
+- The weapons to armor conversion is only possible if the equipment menu stays open during the entire ESM process.ID Armor Direction Weapon 100000 Helm of Favor <--> Dagger 101000 Embraced Armor of Favor <--> Parrying Dagger 102000 Gauntlets of Favor <--> Ghost Blade 103000 Leggings of Favor <--> Bandit's Knife 200000 Helm of Thorns <--> Shortsword 201000 Armor of Thorns <--> Longsword 202000 Gauntlets of Thorns <--> Broadsword 203000 Leggings of Thorns <--> Broken Straight Sword 210000 Standard Helm <--> Darksword 211000 Hard Leather Armor <--> Drake Sword 212000 Hard Leather Gauntlets <--> Straight Sword Hilt 300000 Thief Mask <--> Bastard Sword 301000 Black Leather Armor <--> Claymore 302000 Black Leather Gloves <--> Man-serpent Greatsword 303000 Black Leather Boots <--> Flamberge 310000 Priest's Hat <--> Black Knight Sword 311000 Holy Robe <--> Greatsword of Artorias 312000 Traveling Gloves <--> Greatsword of Artorias 350000 Elite Knight Helm <--> Zweihander 351000 Elite Knight Armor <--> Greatsword 352000 Elite Knight Gauntlets <--> Demon Great Machete 400000 Dingy Hood <--> Scimitar 401000 Dingy Robe <--> Falchion 402000 Dingy Gloves <--> Shotel 403000 Blood-Stained Skirt <--> Jagged Ghost Blade 450000 Brass Helm <--> Server 451000 Brass Armor <--> Murakumo 453000 Brass Leggings <--> Gravelord Sword 500000 Hollow Thief's Hood <--> Uchigatana 501000 Hollow Thief's Leather Armor <--> Washing Pole 503000 Hollow Thief's Tights <--> Chaos Blade 600000 Mask of the Mother <--> Mail Breaker 700000 - <--> Hand Axe 701000 - <--> Battle Axe 702000 - <--> Crescent Axe 703000 - <--> Butcher Knife 900000 Head <--> Fists 901000 Body <--> Caestus 902000 Arms <--> Claw 903000 Legs <--> Dragon Bone Fist 1000000 Dragon Head <--> Spear 1001000 Dragon Body <--> Winged Spear 1002000 Dragon Arms <--> Partizan 1003000 Dragon Legs <--> Demon's Spear
 {% /table %}
 
 {% table %}
 - Goods -> Hair Table
 ---
-- ID Good Direction Hair
-  1000 Titanite Shard --> Shaved (Male)
-  1100 Red Titanite Slab --> Receding
-  2100 Master Key --> Male 12
-  2200 - --> Male 13
-  2500 Lord Soul (Nito) --> Male 16
-  2600 Weapon Smithbox --> Male 17
-  3000 Soul Arrow --> Shaved (Female)
-  3100 Magic Weapon --> Very Short
-  3300 Magic Shield --> Straight A
-  3400 Hidden Weapon --> Straight B
-  3500 Cast Light --> Ponytail A
-  3600 Resist Curse --> Ponytail B
-  3700 White Dragon Breath --> Pigtails
-  4000 Fireball --> Female 11
-  4100 Combustion --> Female 12
-  4200 Poison Mist --> Female 13
-  4300 Iron Flesh --> Female 14
-  4400 Power Within --> Female 15
-  4500 Great Chaos Fireball --> Female 16
-  5000 Heal --> Travel Hairstyle
+- ID Good Direction Hair 1000 Titanite Shard --> Shaved (Male) 1100 Red Titanite Slab --> Receding 2100 Master Key --> Male 12 2200 - --> Male 13 2500 Lord Soul (Nito) --> Male 16 2600 Weapon Smithbox --> Male 17 3000 Soul Arrow --> Shaved (Female) 3100 Magic Weapon --> Very Short 3300 Magic Shield --> Straight A 3400 Hidden Weapon --> Straight B 3500 Cast Light --> Ponytail A 3600 Resist Curse --> Ponytail B 3700 White Dragon Breath --> Pigtails 4000 Fireball --> Female 11 4100 Combustion --> Female 12 4200 Poison Mist --> Female 13 4300 Iron Flesh --> Female 14 4400 Power Within --> Female 15 4500 Great Chaos Fireball --> Female 16 5000 Heal --> Travel Hairstyle
 {% /table %}
 
 ## External Resources
