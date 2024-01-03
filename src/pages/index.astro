@@ -16,6 +16,7 @@ const discord = await getEntry('socials', 'discord')
 		<div class="px-2 py-12 sm:px-6 lg:px-8">
 			<div class="mx-auto max-w-2xl text-center">
 				<Image
+					id="index-logo"
 					src={soulsSpeedrunsLogo}
 					width={100}
 					height={100}
@@ -96,3 +97,24 @@ const discord = await getEntry('socials', 'discord')
 		</section>
 	</main>
 </Layout>
+
+<script>
+	import { navigate } from 'astro:transitions/client'
+
+	function onMenuContext(e: MouseEvent) {
+		navigate('/assets')
+		e.preventDefault()
+	}
+
+	document.addEventListener('astro:page-load', () => {
+		document
+			.getElementById('index-logo')
+			?.addEventListener('contextmenu', onMenuContext)
+	})
+
+	document.addEventListener('astro:before-preparation', () => {
+		document
+			.getElementById('index-logo')
+			?.removeEventListener('contextmenu', onMenuContext)
+	})
+</script>
