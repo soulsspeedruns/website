@@ -48,6 +48,7 @@ const Icons = {
 				)}
 			>
 				<Image
+					id="navbar-logo"
 					src={soulsSpeedrunsLogo}
 					width={24}
 					height={24}
@@ -95,3 +96,24 @@ const Icons = {
 		</ul>
 	</div>
 </nav>
+
+<script>
+	import { navigate } from 'astro:transitions/client'
+
+	function onMenuContext(e: MouseEvent) {
+		navigate('/assets')
+		e.preventDefault()
+	}
+
+	document.addEventListener('astro:page-load', () => {
+		document
+			.getElementById('navbar-logo')
+			?.addEventListener('contextmenu', onMenuContext)
+	})
+
+	document.addEventListener('astro:before-preparation', () => {
+		document
+			.getElementById('navbar-logo')
+			?.removeEventListener('contextmenu', onMenuContext)
+	})
+</script>
