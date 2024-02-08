@@ -43,12 +43,6 @@ To dupe inside the player's own inventory, prompt swap has to be used to replace
 {% table %}
 - 
 ---
-- 
-{% /table %}
-
-{% table %}
-- 
----
 - [http:///File:NegativeQuantityDuping.mp4](http:///File:NegativeQuantityDuping.mp4)
 {% /table %}
 
@@ -62,7 +56,7 @@ In the same way you can buy items without being able to afford them, you can rep
 
 ### Repairing Items to Different/Higher Durability Than the Maximum
 
-If you prompt swap to the other tab with an index that doesn't exist in the target tab, something different to the above happens. The starting item is treated as an item from the target tab/category but keeps its ID and is repaired accordingly. So if an item with that ID doesn't exist in the target category, the item will be set to 0 durability and break. On the other hand, if an item with that ID does exist, then the starting item is repaired according to the corresponding item in the target category, which may be a higher or lower durability than the normally maximum durability. The matching items can be found on this [**image**](//wiki.speedsouls.com/images/1/1a/ESMConversionGraphicWithArmor.jpg).
+If you prompt swap to the other tab with an index that doesn't exist in the target tab, something different to the above happens. The starting item is treated as an item from the target tab/category but keeps its ID and is repaired accordingly. So if an item with that ID doesn't exist in the target category, the item will be set to 0 durability and break. On the other hand, if an item with that ID does exist, then the starting item is repaired according to the corresponding item in the target category, which may be a higher or lower durability than the normally maximum durability. The matching items can be found on this [**image**](/pages/darksouls/equip-slot-manipulation/ESMPointerTableUpdatedIndices.png).
 
 For example, prompt swapping a *Dragon Tooth* to an empty Armor tab and trying to repair it will set its durability to 0, thus breaking it. This is because the *Dragon Tooth* has no item in the Armor category that shares its ID. Interestingly, you also lose all Souls that you currently carry if you do this. In contrast, instead prompt swapping an *Uchigatana* to an empty Armor tab and trying to repair it will set its durability to 250 instead of only 80 (the normal maximum). This is because the *Uchigatana* matches the ID of the *Hollow Thief's Hood* which has a maximum durability of 250.
 
@@ -98,22 +92,10 @@ Below are listed all items that can be created this way and how.
 {% table %}
 - 
 ---
-- 
-{% /table %}
-
-{% table %}
-- 
----
 - [http:///File:PromptSwapLautrecBEO.mp4](http:///File:PromptSwapLautrecBEO.mp4)
 {% /table %}
 
 **Speckled Stoneplate Ring**
-
-{% table %}
-- 
----
-- 
-{% /table %}
 
 {% table %}
 - 
@@ -123,61 +105,30 @@ Below are listed all items that can be created this way and how.
 
 **Snickering Top Hat**
 
-{% table %}
-- 
----
-- 
-{% /table %}
-
-{% table %}
-- 
----
-- [http:///File:PromptSwapSnickeringTopHat.mp4](http:///File:PromptSwapSnickeringTopHat.mp4)
-{% /table %}
+{% youtube src="https://www.youtube.com/watch?v=Bp1Qroj3sw8" /%}
 
 ## Miscellaneous
 
-**Scroll Value Disconnect**
+#### Scroll Value Disconnect
 
-**Double/Triple Start Menu**
+Prompt Swap can be used to make the scrollbar in merchant menus go out of bounds. This can be useful in certain situations, but generally doesn't find use in speedruns so far.
 
-Using Prompt Swap in the start menu to switch tabs and bring up the *Options* menu at the same time results in two menus being open simultaneously. Navigating both menus at once is quite confusing.
+{% youtube src="https://www.youtube.com/watch?v=0q5z3IQp6Vw" /%}
 
-The applications are:
+#### Double/Triple Start Menu
 
-- Brightness (Negative) Dupe - [All Bosses](/darksouls/all-bosses) category.
-- in [100%](/darksouls/100) category it's used to equip invalid weapon ("DropEquip") to get [Poopwalk](/darksouls/poopwalk) for ladderclip.
+Using Prompt Swap in the start menu to switch tabs and bringing up the *Options* menu at the same time results in two menus being opened simultaneously. Navigating both menus can be quite confusing at first, but it finds use in various speedruns to perform glitches otherwise not possible.
 
-Notes:
+Example applications are:
 
-- it works for every sub-menu of *Status* tab.
-- mouse isn't necessary here and keyboard inputs could be used instead.
+- Performing Quantity Storage with a negative quantity to dupe an item, e.g. in All Bosses.
+- Dropping a weapon and equipping an invalid weapon instead ("Drop Equip"), e.g. in 100%.
 
-With further menuing, three menus may be opened at the same time as well, although it seems only ever two menus can be active and receive inputs at once.
-
-{% table %}
-- 
----
-- 
-{% /table %}
-
-{% table %}
-- 
----
-- [http:///File:DoubleStartMenu.mp4](http:///File:DoubleStartMenu.mp4)
-{% /table %}
-
-**Using Prompt Swapping for Snuggly**
+#### Using Prompt Swapping for Snuggly
 
 The same method that can be used to dupe items with a stored -1 quantity inside the player's inventory can be used to trade items with Snuggly without actually giving them up.
 
 After any load screen/quitout the stored quantity is internally set to 0. Using the same procedure as the aforementioned duping, you can create a dropped item instance on the ground with a quantity of 0. Picking the item up makes it disappear, but it's still recognized as a valid drop for Snuggly. So dropping an amount of 0 (or -1) of a trade item into Snuggly's nest and reloading gives you Snuggly's exchange item without actually having dropped anything.
-
-{% table %}
-- 
----
-- 
-{% /table %}
 
 {% table %}
 - 
