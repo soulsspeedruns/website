@@ -4,7 +4,9 @@ hidden: false
 ---
 **Moveswap** is a glitch in [Dark Souls](/darksouls) and was discovered in August 2013. It allows the player to transfer the running, rolling and plunging attack from one weapon to another and is commonly used in speedruns since it can double the damage output when used correctly. It works on all patch versions of the game.
 
-#### **Moveswap does not work in**  [**Dark Souls Remastered**](/ds1remaster)**.**
+#### **Moveswap does not work in**    [**Dark Souls Remastered**](/ds1remaster)**.**
+
+---
 
 ## Procedure
 
@@ -17,35 +19,27 @@ To perform moveswap, start an animation (usually rolling), queue up the two-hand
 
 ***Note:*** Moveswapping doesn't work while being out of stamina as any action in the game requires you to have more than 0 stamina in order to execute it. Make sure to have at least a little bit of stamina than you need to perform the animation you use for moveswapping.
 
-## Animation Structure
+## Inner Workings
 
-Animations can be divided into 3 sections when queueing up actions while performing them. These sections are characterized by the things they allow the player to do. The first two sections are defined as follows:
+The reason why moveswap works is a) due to action queueing that allows you to queue up actions in advance and b) due to the fact that the bow two-hand animation is actually divided into 2 different animations.
 
-{% table %}
-- 
----
-- **1. Section:** The frames where the game will not queue up any actions during the animation, no matter the button presses.**2. Section:** The frames where the game will register inputs to be executed once the animation is over.
-{% /table %}
+When queueing up an action in advance during another action, the queued action will be executed afterwards based on whatever equipment you have at the time of execution. Normally this should mean that if you queue up an L1/LB action with a bow and then switch to another weapon, the bow two-handing should no longer be executed and instead the L1/LB action of the new weapon should be used (usually an attack).
 
-There is a catch to the second section though which plays a significant role for moveswapping. The frames that allow you to queue up an input are not the same frames as the ones where the game actually registers which action to execute once the animation is over. This is the 3rd section of an animation.
+And this is exactly what happens if you equip the new weapon too fast before the bow two-handing action actually begins: you attack instead. On the flip-side, if you equip the new weapon too late, the bow two-handing will be undone (or the game will block you from accessing the equipment slot with the bow if the two-handing currently happens).
 
-{% table %}
-- 
----
-- **3. Section:** The frames where the game will decide which action to execute based on your last input.
-{% /table %}
+So in order to successfully perform moveswap, you need to hit the window in between. The bow two-handing, as mentioned, is divided into two parts: the first part is an animation that shows the player putting away their other weapon, the second part is the actual two-hand animation. The reason two-hand animations are divided up, is because each part might play a slightly different animation depending on the exact type of weapons you have equipped (think about how you hold a straight sword differently to a greatsword).
 
-In a normal case this distinction between the second and third section would not be an issue. But for moveswapping it is since you are switching out a bow for another weapon. So it is actually possible to queue up the PS3 L1.png | 360 Bumper left.png input in section 2 with the bow but then switch out the bow too quickly so that the game reaches section 3 with your other weapon in your hand which causes it to queue up the PS3 L1.png | 360 Bumper left.png action of your new weapon (an attack) instead of using the PS3 L1.png | 360 Bumper left.png action of your bow (the two-handing).
+For bow two-handing, the first part has a length of 4 frames. Therefore, since this is the part during which you need to equip the new weapon, the window for moveswapping is also 4 frames.
 
 ## Button press sequences for moveswapping
 
-#### **If the weapon you want to moveswap is**  ***above***  **the bow in your weapon list:**
+#### **If the weapon you want to moveswap is**    ***above***    **the bow in your weapon list:**
 
 **Xbox:**  B  LB  Start  RB/Right  A  Down  A  Up  A
 
 **PS3:**  Circle  L1  Start  R1/Right  X  Down  X  Up  X
 
-#### **If the weapon you want to moveswap is**  ***below***  **the bow in your weapon list:**
+#### **If the weapon you want to moveswap is**    ***below***    **the bow in your weapon list:**
 
 **Xbox:**  B  LB  Start  RB/Right  A  Down  A  Down  A
 
@@ -65,10 +59,10 @@ In a normal case this distinction between the second and third section would not
 
 ## Common Mistakes
 
-- **"I cannot go into the equipment menu!"**: Dark Souls inherently has a menu delay, meaning after opening the menu (pressing 'Start') there is a short window where you cannot do anything yet. It takes some time to get used to.
-- **"I can't switch out the bow for another weapon!"**: If you cannot switch out the bow you're too slow because that means the two-handing of the bow is currently executed and you cannot switch the weapon while you're doing that.
-- **"After switching out the bow the weapon is not two-handed!"**: That means you're pressing PS3 L1.png | 360 Bumper left.png too early which causes the two-handing-action to not get queued up.
-- **"After switching out the bow I attack with my left hand weapon instead of two-handing it!"**: If this happens you actually equip the weapon too fast. The reason is, you queue up the PS3 L1.png | 360 Bumper left.png action but switch the weapon out so fast that the bow PS3 L1.png | 360 Bumper left.png isn't used anymore and instead the attack of the new weapon is used. More detailed explanation in [Animation Structure](/darksouls/moveswapanimation-structure).
+- **"I cannot go into the equipment menu!"**: Dark Souls inherently has a menu delay, meaning after opening the menu (pressing 'Start') there is a short window (5 frames) where you cannot do anything yet. It takes some time to get used to.
+- **"I can't switch out the bow for another weapon!"**: If you cannot switch out the bow you're too slow. It means that the two-handing of the bow is currently executed and the game does not allow switching weapons during a two-hand.
+- **"After switching out the bow the weapon is not two-handed!"**: That means you are either pressing LB/L1 too early which causes the two-handing-action to not be queued up, or you equip the weapon too late and undo the bow two-hand after it was begun/performed.
+- **"After switching out the bow I attack with my left hand weapon instead of two-handing it!"**: If this happens, you actually equip the weapon too fast. The reason is, you queue up the L1/LB action but switch the weapon out so fast that the bow L1/LB isn't used anymore and instead the attack of the new weapon is used. More detailed explanation in [Inner Workings](/darksouls/moveswap#inner-workings) above.
 
 ## Miscellaneous
 
