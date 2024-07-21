@@ -25,58 +25,86 @@ Before proceeding, we recommend always backing up local copies of your Elden Rin
 
 ## Tutorial Video
 
-Daravae: Note that this method still works, but is slightly outdated. Please refer to the above guide for a more up-to-date guide on downpatching. There will be a new video soon also detailing these new downpatching steps.
-
-{% youtube
-   src="https://youtu.be/916WBJ0T-KI?si=tilHy95ud10p9MQn" /%}
+{% youtube src="https://www.youtube.com/watch?v=0W_152p_daU" /%}
 
 ## Depot Overview
 
 To find the correct depots for a specific Elden Ring version, you can either use the quick references below or SteamDB. To use SteamDB, first find the date the version of Elden Ring you want was released. Then go to [**SteamDB data depots**](https://steamdb.info/depot/1245621/manifests/) and [**SteamDB exe depots**](https://steamdb.info/depot/1245624/manifests/), compare the version release date to the `SEEN DATE` column and copy the `MANIFESTID` from that row and replace the `MANIFESTID` with it in the following commands:
 
-**Data**    `download_depot 1245620 1245621 MANIFESTID`
+```
+Data          download_depot 1245620 1245621 MANIFESTID
+DLC           download_depot 1245620 2778580 MANIFESTID
+Executable    download_depot 1245620 1245624 MANIFESTID
+```
 
-**Executable**    `download_depot 1245620 1245624 MANIFESTID`
+### **Quick Reference**
 
-### Quick Reference
+Ver 1.02.3 / Calib 1.02.1 - **March 4th, 2022**
 
-Ver 1.02.3 / Calib 1.02.1 - **March 4th**
+```
+Data          download_depot 1245620 1245621 8390693081119963338
+Executable    download_depot 1245620 1245624 2484355486124511110
+```
 
-**Data** `download_depot 1245620 1245621 8390693081119963338`\
-**Executable** `download_depot 1245620 1245624 2484355486124511110`
+**(Japanese Version)**
 
-**Data**    `download_depot 1245620 1245623 6753042800700035993`
+```
+Data          download_depot 1245620 1245623 6753042800700035993
+```
 
-Ver 1.03.2 / Calib 1.03.2 - **March 23rd**
+Ver 1.03.2 / Calib 1.03.2 - **March 23rd, 2022**
 
-**Data**    `download_depot 1245620 1245621 651592403601971015`
+```
+Data          download_depot 1245620 1245621 651592403601971015
+Executable    download_depot 1245620 1245624 4044806403270059785
+```
 
-**Executable**    `download_depot 1245620 1245624 4044806403270059785`
+**(Japanese Version)**
 
-(Japanese Version)
+```
+Data          download_depot 1245620 1245623 1329087738181980725
+```
 
-**Data**    `download_depot 1245620 1245623 1329087738181980725`
+Ver 1.04 / Calib 1.04.1 - **April 19th, 2022**
 
-Ver 1.04 / Calib 1.04.1 - **April 19th**
+```
+Data          download_depot 1245620 1245621 8069659878263483524
+Executable    download_depot 1245620 1245624 3842441351441332671
+```
 
-**Data**    `download_depot 1245620 1245621 8069659878263483524`
+Ver 1.05 / Calib 1.05 - **June 13th, 2022**
 
-**Executable**    `download_depot 1245620 1245624 3842441351441332671`
+```
+Data          download_depot 1245620 1245621 669913989806054276
+Executable    download_depot 1245620 1245624 4098090331125924085
+```
 
-Ver 1.05 / Calib 1.05 - **June 13th**
+Ver 1.07 / Calib 1.07.1 - **October 25th, 2022**
 
-**Data**    `download_depot 1245620 1245621 669913989806054276`
+```
+Data          download_depot 1245620 1245621 1553405179048183344
+Executable    download_depot 1245620 1245624 312006607626313969
+```
 
-**Executable**    `download_depot 1245620 1245624 4098090331125924085`
+Ver 1.08 / Calib 1.08.1 - **December 15th, 2022**
 
-Ver 1.07 / Calib 1.07.1 - **October 25th**
+```
+Data          download_depot 1245620 1245621 1372657426714032507
+Executable    download_depot 1245620 1245624 1790146326279181276
+```
 
-**Data**    `download_depot 1245620 1245621 1553405179048183344`
+Ver 1.12 / Calib 1.12.1 - **June 20th, 2024 (DLC Release)**
 
-**Executable**    `download_depot 1245620 1245624 312006607626313969`
+```
+Data          download_depot 1245620 1245621 8868449847359611551
+DLC           download_depot 1245620 2778580 1746314650894079894
+Executable    download_depot 1245620 1245624 6365523282031070954
+```
 
-Ver 1.08 / Calib 1.08.1 - **December 15th**
+Ver 1.12 / Calib 1.12.2 - **June 26th 2024**
 
-**Data**    `download_depot 1245620 1245621 1372657426714032507`
-
-**Executable**    `download_depot 1245620 1245624 1790146326279181276`
+```
+Data          download_depot 1245620 1245621 473223618148436659
+DLC           download_depot 1245620 2778580 1746314650894079894
+Executable    download_depot 1245620 1245624 4749783526617367064
+```
