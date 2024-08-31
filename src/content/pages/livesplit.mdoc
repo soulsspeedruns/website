@@ -70,14 +70,9 @@ Sometimes windows defender or other virus scanners think that the plugin is a vi
 
 You can verify if all files are present on your system. Navigate to where you installed livesplit, and find a folder called "components". Inside this folder, you need these files:
 
-SoulSplitter.dll
-SoulMemory.dll
-MaterialDesignThemes.Wpf.xml
-MaterialDesignThemes.Wpf.dll
-MaterialDesignThemes.Wpf.dll
+SoulSplitter.dll SoulMemory.dll MaterialDesignThemes.Wpf.xml MaterialDesignThemes.Wpf.dll MaterialDesignThemes.Wpf.dll
 
-If any of these are missing, you have an incomplete installation. You can download the files manually here: [https://github.com/FrankvdStam/SoulSplitter/releases
-](https://github.com/FrankvdStam/SoulSplitter/releases)
+If any of these are missing, you have an incomplete installation. You can download the files manually here: [https://github.com/FrankvdStam/SoulSplitter/releases ](https://github.com/FrankvdStam/SoulSplitter/releases)
 
 Alternatively, you can delete all the remaining files and restart livesplit. This will prompt livesplit to re-download the files. This might fix the problem. If the problem persists, you need to check your antivirus. In case of windows defender, look for any of the above files in your protection history, and click "restore" to allow the file.
 
@@ -87,10 +82,16 @@ You can filter on quarantined items to make it easier to find the right files.
 
 ![](/pages/livesplit/windows_defender_filter.png)
 
-It is also possible to add an exclusion on the livesplit folder:
+It is also possible to add an exclusion for the files so that this does not keep happening:
 
 ![](/pages/livesplit/exclusions.png)
 
-![](/pages/livesplit/add_exclusion.png)
+Pick file:
 
-![](/pages/livesplit/exclusion_added.png)
+![](/pages/livesplit/exclusion_pick_file.png)
+
+Navigate to soulsplitter.dll and soulmemory.dll and add an exclusion for both these files.
+
+![](/pages/livesplit/exclusions_added_for_both_files.png)
+
+**It is not recommended to completely disable windows defender, or to exclude all of livesplit.**
