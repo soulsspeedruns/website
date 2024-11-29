@@ -6,6 +6,8 @@ import { getCollection, getEntry } from 'astro:content'
 import { Image } from 'astro:assets'
 import { cn } from '@/lib/utils'
 import soulsSpeedrunsLogo from '@/images/SoulsSpeedrunsLogo.png'
+import scmLogoDark from '@/images/SCM Logo for Discord.png'
+import scmLogoLight from '@/images/SCM Logo for Discord_black.png'
 
 const games = await getCollection('games')
 const discord = await getEntry('socials', 'discord')
@@ -13,8 +15,33 @@ const discord = await getEntry('socials', 'discord')
 
 <Layout title="SoulsSpeedruns Wiki">
 	<main class="container mx-auto mt-16 py-2">
-		<div class="px-2 py-12 sm:px-6 lg:px-8">
+		<div class="px-2 py-8 sm:px-6 lg:px-8">
 			<div class="mx-auto max-w-2xl text-center">
+				<Image
+					id="scm-logo"
+					src={scmLogoDark}
+					width={120}
+					height={120}
+					alt={`SCM Logo`}
+					class="mb-3 text-center hidden dark:inline"
+				/>
+
+				<Image
+					id="scm-logo"
+					src={scmLogoLight}
+					width={120}
+					height={120}
+					alt={`SCM Logo`}
+					class="mb-3 text-center inline dark:hidden"
+				/>
+
+				<h1
+				class="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-3xl pb-12 pt-2"
+				>
+					Souls Charity Marathon is happening Nov. 30th - Dec. 1st!<br>
+					Don't miss it over on our <a href="https://www.twitch.tv/soulsspeedruns">Twitch channel</a>. Check out the schedule <a href="https://oengus.io/marathon/scm2024/schedule/main">here</a>.
+				</h1>
+				
 				<Image
 					id="index-logo"
 					src={soulsSpeedrunsLogo}
