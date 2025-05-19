@@ -3,6 +3,7 @@ import '@/styles/tailwind.css'
 import '@/styles/nprogress.css'
 import Navbar from '@/components/navbar.astro'
 import { ViewTransitions } from 'astro:transitions'
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
 	title: string
@@ -45,6 +46,7 @@ const { title } = Astro.props
 		></script>
 		<ViewTransitions fallback="swap" />
 		<title>{title}</title>
+		<Analytics />
 	</head>
 	<body class="!mr-[var(--removed-body-scroll-bar-size,'0px')]">
 		<Navbar
