@@ -1,15 +1,11 @@
 ---
-import {
-	YouTube as YouTubePreview,
-	type Props as YouTubePreviewProps,
-} from '@/components/markdoc/youtube.preview'
+import { YouTube } from 'astro-embed';
 
-type Props = YouTubePreviewProps
+type Props = {
+	src: string;
+};
 
 const { src } = Astro.props
 ---
 
-<YouTubePreview
-	src={src}
-	client:idle
-/>
+<YouTube id={src} />
