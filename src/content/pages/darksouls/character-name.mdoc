@@ -527,40 +527,40 @@ The expandable lists below show all possible tags:
 
 There are various tags reserved for string formatting that can be used in the character name. All of these start with a `#` sign. In order to type one of the following tags into the name input field, the `#` and the corresponding tag letter need to be typed while the underscore (`_`) that flashes while entering a name is invisible. If the current character name ends in a single `#` when the `_` is visible, the game will crash. This is because the game tries to interpret the `#_` as a tag which does not exist. The flashing is caused by the game alternating between `_` and `#a[00]_#a` (an invisible underscore). When the latter is present (and no underscore is visible), the `#` character will not crash, because `##` is valid. This toggle happens every X frames, so you need to type somewhat quickly. '''Note:''' The 13 character limit still applies to escaped characters, so your name will have to be much shorter if it includes any of these sequences. The code (in debug) which handles `#` escapements is at 0x0058CD20. It calls into separate functions for each of the sequences below: 
 
-# `##`
+### `##`
 
 Escapement for the literal `#` character. Consumes both characters and returns (continues processing normally). 
 
-# `#a` (Alpha)
+### `#a` (Alpha)
 
 Parses a color code out of the remainder of the string. See [[#Color_Parsing|color parsing]] for more technical details. Note that only the low byte (the "blue" component) is used to determine the alpha (transparency) of the text.
 This operates similar to HTML; `0xFF` represents full opacity and `0x00` represents full transparency. If the tag is unterminated, this will alternate every other frame, since the text parser maintains an internal state<sup>explain?</sup> which is not cleared. 
 
-# `#b` (Bold)
+### `#b` (Bold)
 
 Marks the text as bold, until another `#b` is found. If the tag is unterminated, this will alternate every other frame, since the text parser maintains an internal state<sup>explain?</sup> which is not cleared.
 
-# `#c` (Color)
+### `#c` (Color)
 
 Parses a color code out of the remainder of the string. See [[#Color_Parsing|color parsing]] for more technical details. This operates similar to HTML; e.g. `0x7F00FFFF` represents a 50% opacity bright teal. If the tag is unterminated, this will alternate every other frame, since the text parser maintains an internal state<sup>explain?</sup> which is not cleared.
 
-# `#f` (Font)
+### `#f` (Font)
 
 Parses a color code out of the remainder of the string. See [[#Color_Parsing|color parsing]] for more technical details. This code is used to determine the font ID. There are only 3 fonts in the game, and any value greater than `0x0000002` will result in the text not being rendered. Since the color parser prefixes an alpha value for codes less than 6 digits, you must supply a 7 or 8 digit code to have a visible font. {| class="wikitable mw-collapsible mw-collapsed" ! Available fonts |- | style="text-align: left;" | {| | [[File:Font_0.png|Monospaced font]] |- | Monospaced font (0) |} {| | [[File:Font_1.png|Default font]] |- | Default font (1) |} {| | [[File:Font_2.png|Unused font]] |- | Unused font (2) |} {| | [[File:Font_3.png|Invisible font]] |- | Invisible font (3+) |} |}
 
-# `#i` (Italics)
+### `#i` (Italics)
 
 Marks the text as italics, until another `#i` is found. If the tag is unterminated, this will alternate every other frame, since the text parser maintains an internal state<sup>explain?</sup> which is not cleared.
 
-# `#m` 
+### `#m` 
 
 Calls into 0x58BBB0 
 
-# `#r`
+### `#r`
 
 Calls into 0x58C7A0 
 
-# Any other character
+### Any other character
 
 Default case, which triggers a crash. This calls 0x55A3F0 (likely a [[wikipedia:Kernel_panic|panic function]]) as such:
 `func_55A3F0("invalid char code", 1330, "..\..\Source\Font\DLTaggedTextProcessor.cpp")`
