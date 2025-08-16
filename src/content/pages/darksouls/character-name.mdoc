@@ -1,9 +1,8 @@
 ---
-title: 100%
+title: Character Name
 hidden: false
 ---
-
-This page is dedicated to glitches and mechanics related to the character name and the name input field in the character creation menu. 
+This page is dedicated to glitches and mechanics related to the character name and the name input field in the character creation menu.
 
 ## Variable Tags
 
@@ -12,6 +11,7 @@ The name input field allows many different variable tags to be used within a cha
 Some tags such as `sysmsg` expect a parameter, usually an id. The parameter is written after an @ sign. For example `<?sysmsg@1?>` results in `OK`. Adding an @ sign to the end of any tag regardless of it expecting a parameter or not doesn't change how it is displayed.
 
 The expandable lists below show all possible tags:
+
 {% table %}
 - Variable tags that fit 13 character name limit
 ---
@@ -525,16 +525,15 @@ The expandable lists below show all possible tags:
 
 ## Formatting Tags
 
-There are various tags reserved for string formatting that can be used in the character name. All of these start with a `#` sign. In order to type one of the following tags into the name input field, the `#` and the corresponding tag letter need to be typed while the underscore (`_`) that flashes while entering a name is invisible. If the current character name ends in a single `#` when the `_` is visible, the game will crash. This is because the game tries to interpret the `#_` as a tag which does not exist. The flashing is caused by the game alternating between `_` and `#a[00]_#a` (an invisible underscore). When the latter is present (and no underscore is visible), the `#` character will not crash, because `##` is valid. This toggle happens every X frames, so you need to type somewhat quickly. '''Note:''' The 13 character limit still applies to escaped characters, so your name will have to be much shorter if it includes any of these sequences. The code (in debug) which handles `#` escapements is at 0x0058CD20. It calls into separate functions for each of the sequences below: 
+There are various tags reserved for string formatting that can be used in the character name. All of these start with a `#` sign. In order to type one of the following tags into the name input field, the `#` and the corresponding tag letter need to be typed while the underscore (`_`) that flashes while entering a name is invisible. If the current character name ends in a single `#` when the `_` is visible, the game will crash. This is because the game tries to interpret the `#_` as a tag which does not exist. The flashing is caused by the game alternating between `_` and `#a[00]_#a` (an invisible underscore). When the latter is present (and no underscore is visible), the `#` character will not crash, because `##` is valid. This toggle happens every X frames, so you need to type somewhat quickly. '''Note:''' The 13 character limit still applies to escaped characters, so your name will have to be much shorter if it includes any of these sequences. The code (in debug) which handles `#` escapements is at 0x0058CD20. It calls into separate functions for each of the sequences below:
 
 ### `##`
 
-Escapement for the literal `#` character. Consumes both characters and returns (continues processing normally). 
+Escapement for the literal `#` character. Consumes both characters and returns (continues processing normally).
 
 ### `#a` (Alpha)
 
-Parses a color code out of the remainder of the string. See [[#Color_Parsing|color parsing]] for more technical details. Note that only the low byte (the "blue" component) is used to determine the alpha (transparency) of the text.
-This operates similar to HTML; `0xFF` represents full opacity and `0x00` represents full transparency. If the tag is unterminated, this will alternate every other frame, since the text parser maintains an internal state<sup>explain?</sup> which is not cleared. 
+Parses a color code out of the remainder of the string. See [color parsing](https://soulsspeedruns.com/darksouls/character-name#color-parsing) for more technical details. Note that only the low byte (the "blue" component) is used to determine the alpha (transparency) of the text. This operates similar to HTML; `0xFF` represents full opacity and `0x00` represents full transparency. If the tag is unterminated, this will alternate every other frame, since the text parser maintains an internal state<sup>explain?</sup> which is not cleared.
 
 ### `#b` (Bold)
 
@@ -542,44 +541,44 @@ Marks the text as bold, until another `#b` is found. If the tag is unterminated,
 
 ### `#c` (Color)
 
-Parses a color code out of the remainder of the string. See [[#Color_Parsing|color parsing]] for more technical details. This operates similar to HTML; e.g. `0x7F00FFFF` represents a 50% opacity bright teal. If the tag is unterminated, this will alternate every other frame, since the text parser maintains an internal state<sup>explain?</sup> which is not cleared.
+Parses a color code out of the remainder of the string. See [color parsing](https://soulsspeedruns.com/darksouls/character-name#color-parsing) for more technical details. This operates similar to HTML; e.g. `0x7F00FFFF` represents a 50% opacity bright teal. If the tag is unterminated, this will alternate every other frame, since the text parser maintains an internal state<sup>explain?</sup> which is not cleared.
 
 ### `#f` (Font)
 
-Parses a color code out of the remainder of the string. See [[#Color_Parsing|color parsing]] for more technical details. This code is used to determine the font ID. There are only 3 fonts in the game, and any value greater than `0x0000002` will result in the text not being rendered. Since the color parser prefixes an alpha value for codes less than 6 digits, you must supply a 7 or 8 digit code to have a visible font. {| class="wikitable mw-collapsible mw-collapsed" ! Available fonts |- | style="text-align: left;" | {| | [[File:Font_0.png|Monospaced font]] |- | Monospaced font (0) |} {| | [[File:Font_1.png|Default font]] |- | Default font (1) |} {| | [[File:Font_2.png|Unused font]] |- | Unused font (2) |} {| | [[File:Font_3.png|Invisible font]] |- | Invisible font (3+) |} |}
+Parses a color code out of the remainder of the string. See [color parsing](https://soulsspeedruns.com/darksouls/character-name#color-parsing) for more technical details. This code is used to determine the font ID. There are only 3 fonts in the game, and any value greater than `0x0000002` will result in the text not being rendered. Since the color parser prefixes an alpha value for codes less than 6 digits, you must supply a 7 or 8 digit code to have a visible font. {| class="wikitable mw-collapsible mw-collapsed" ! Available fonts |- | style="text-align: left;" | {| | [[File:Font_0.png|Monospaced font]] |- | Monospaced font (0) |} {| | [[File:Font_1.png|Default font]] |- | Default font (1) |} {| | [[File:Font_2.png|Unused font]] |- | Unused font (2) |} {| | [[File:Font_3.png|Invisible font]] |- | Invisible font (3+) |} |}
 
 ### `#i` (Italics)
 
 Marks the text as italics, until another `#i` is found. If the tag is unterminated, this will alternate every other frame, since the text parser maintains an internal state<sup>explain?</sup> which is not cleared.
 
-### `#m` 
+### `#m`
 
-Calls into 0x58BBB0 
+Calls into 0x58BBB0
 
 ### `#r`
 
-Calls into 0x58C7A0 
+Calls into 0x58C7A0
 
 ### Any other character
 
-Default case, which triggers a crash. This calls 0x55A3F0 (likely a [[wikipedia:Kernel_panic|panic function]]) as such:
-`func_55A3F0("invalid char code", 1330, "..\..\Source\Font\DLTaggedTextProcessor.cpp")`
-Presumably the next two arguments are the line and file name of this error. 
+Default case, which triggers a crash. This calls 0x55A3F0 (likely a [panic function](https://en.wikipedia.org/wiki/Kernel_panic)) as such: `func_55A3F0("invalid char code", 1330, "..\..\Source\Font\DLTaggedTextProcessor.cpp")` Presumably the next two arguments are the line and file name of this error.
 
 ## Color Parsing
 
 For tags which require a color code, the name parser will look for a code within brackets (`[]`).
-- First, it checks that the immediate next character is an open bracket. If not, the function returns 0, which resets the color code. 
-- If there are no further characters after the opening bracket, the parser returns a default value of 0xFF000000 (ARGB, opaque black). 
-- If an opening bracket is found, the parser will consume characters until a closing bracket is found. Due to a bug, if there is no closing bracket, the parser will keep reading until it finds one, usually resulting in a crash. 
-- Each character that is read is mapped to a value by taking the hex value of the character (e.g. 'a' == 0x61), adding `0x10DA2E4`<sup>(steam version)</sup> or `0x10DF2D4`<sup>(debug version)</sup>, and then reading the value at that location. 
-- All of these values are in the read-only data segment from `0x10CC000 - 0x12A9FFF`<sup>(steam version)</sup>. Theoretically, a codepoint from a [[wikipedia:Plane_(Unicode)#Supplementary_Multilingual_Plane|supplementary plane]] could read outside this region, but these values are too large (`0xDF00DC00` is the smallest such value) and result in an access violation. 
+
+- First, it checks that the immediate next character is an open bracket. If not, the function returns 0, which resets the color code.
+- If there are no further characters after the opening bracket, the parser returns a default value of 0xFF000000 (ARGB, opaque black).
+- If an opening bracket is found, the parser will consume characters until a closing bracket is found. Due to a bug, if there is no closing bracket, the parser will keep reading until it finds one, usually resulting in a crash.
+- Each character that is read is mapped to a value by taking the hex value of the character (e.g. 'a' == 0x61), adding `0x10DA2E4`<sup>(steam version)</sup> or `0x10DF2D4`<sup>(debug version)</sup>, and then reading the value at that location.
+- All of these values are in the read-only data segment from `0x10CC000 - 0x12A9FFF`<sup>(steam version)</sup>. Theoretically, a codepoint from a [supplementary plane](https://en.wikipedia.org/wiki/Plane_\(Unicode\)#Supplementary_Multilingual_Plane) could read outside this region, but these values are too large (`0xDF00DC00` is the smallest such value) and result in an access violation.
 - The contents of this table depend on the version you play on. For example, the character È (alt+0200) maps to 0xF8 on the latest steam version, but maps to 0x50 on the debug version.
-- The main hexadecimal characters (`0-9`, `a-f`, and `A-F`) all map to their associated hexadecimal counterparts. 
+- The main hexadecimal characters (`0-9`, `a-f`, and `A-F`) all map to their associated hexadecimal counterparts.
 - Although each character maps to an entire byte, the parser only expects a half-byte (nibble). Thus, the first character in the input can be used to set two bytes (if it's a non-ascii character).
 - At the end of parsing, if there are 6 or fewer characters, the alpha is automatically set to 0xFF (fully opaque).
 
 Each character represents a "nibble" (half of a byte). This means that 8 characters are required to fully express a color code. Note that characters are filled right-to-left, so `CC` maps to `FF0000CC` (blue), and `CC00` maps to `FF00CC00` (green). To input a color code (or an alpha code) without triggering a crash, follow these steps:
-- While the cursor is invisible, input `#c` 
+
+- While the cursor is invisible, input `#c`
 - While `[00]` is visible, input `[]`
-- While `[00]` is visible, input `BACKSPACE` `A]` (where `A` is the next character in your desired color code). Like all the other codes, color will flash on every frame if the tag is not closed. You still need to be careful when closing the code, and only input `#c` when the underscore is invisible.
+- While `[00]` is visible, input `BACKSPACE`  `A]` (where `A` is the next character in your desired color code). Like all the other codes, color will flash on every frame if the tag is not closed. You still need to be careful when closing the code, and only input `#c` when the underscore is invisible.
