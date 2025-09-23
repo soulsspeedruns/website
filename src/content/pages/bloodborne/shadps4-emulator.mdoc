@@ -74,11 +74,11 @@ Game Savefile is named "userdata0000"
 
 Browse to your savefile location which should look similar to this:
 
-![](/pages/bloodborne/shadps4-emulator/savefilelocation.png)
+![](/pages/bloodborne/shadps4-emulator/SaveOrganizerWikiSavefileLocation.png)
 
 Profile Directory can be anywhere (and named anything) you want but preferably in its own folder and not in the same directory as the saves for the game.
 
-![](/pages/bloodborne/shadps4-emulator/image.png)
+![](/pages/bloodborne/shadps4-emulator/SaveOrganizerWikiProfiles.png)
 
 After this just make a new Profile and name it whatever you like.
 
@@ -87,6 +87,38 @@ After this just make a new Profile and name it whatever you like.
 To actually make the saves you just use the buttons like you would for any other souls game.
 
 Make sure to quitout before importing and loading.
+
+### FAQ
+
+**Q."My saves disappeared after a shadps4 update. Where did they go?"**
+
+**A.** Shadps4 is probably storing your save data under a new ID instead of the one you originally used (ie. CUSA00207). To fix this you just need to change the Savefile location to the new folder in Save Organizer.
+
+Locate Your Original Save Folder: Go to one of these IDs using this path: **shadPS4\user\savedata\1**
+
+or
+
+**C:\Users...\AppData\Roaming\shadPS4\savedata\1**
+
+And look for one of the following folders:
+
+CUSA00208
+
+CUSA03173
+
+CUSA01363
+
+CUSA00900
+
+CUSA03023
+
+CUSA03179
+
+My folder's looked like this:
+
+![](/pages/bloodborne/shadps4-emulator/image.png)
+
+Copy your entire SPRJ0005 folder (located in the CUSA folder) from where your saves originally are stored into the new folder. For example mine was CUSA03173 and with the update it now is reading files from CUSA00207. Paste the SPRJ0005 into CUSA00207. Then change the path in Save organizer to the userdata0000 in the .../CUSA00207/SPRJ0005/ folder (you can see this above in the Save Organizer section). This should get everything back up in running. If having trouble just ask in the discord.
 
 ## Recommended and potentially helpful mods
 
