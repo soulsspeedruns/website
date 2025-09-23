@@ -17,17 +17,19 @@ interface Props extends HTMLAttributes<'nav'> {
 
 const { class: className } = Astro.props
 
-const socials = await Promise.all([
+const maybes = await Promise.all([
 	getEntry('socials', 'twitter'),
 	getEntry('socials', 'discord'),
 	getEntry('socials', 'github'),
 ])
 
-const Icons = {
-	twitter: Twitter,
-	discord: Discord,
-	github: Github,
-} as const
+const socials = maybes.filter(Boolean)
+
+const icons = new Map([
+	['twitter', Twitter],
+	['discord', Discord],
+	['github', Github],
+])
 ---
 
 <nav
@@ -55,7 +57,7 @@ const Icons = {
 					alt={`SoulsSpeedruns Logo`}
 				/>
 				<span
-					class="hidden truncate p-2 text-foreground xl:block dark:text-orange-300 dark:hover:text-orange-400"
+					class="hidden truncate p-2 text-foreground dark:text-orange-300 dark:hover:text-orange-400 xl:block"
 					>SoulsSpeedruns Wiki</span
 				>
 			</a>
@@ -66,7 +68,9 @@ const Icons = {
 		<ul class="col-span-2 ml-auto hidden items-center lg:flex">
 			{
 				socials.map((social) => {
-					const Icon = Icons[social.id]
+					const Icon = icons.get(social.id)
+
+					if (!Icon) return null
 
 					return (
 						<li>
