@@ -13,6 +13,10 @@ const scm = false
 
 const games = await getCollection('games')
 const discord = await getEntry('socials', 'discord')
+
+if (!discord) {
+	throw new Error('Discord link not found')
+}
 ---
 
 <Layout title="SoulsSpeedruns Wiki">
@@ -83,7 +87,7 @@ const discord = await getEntry('socials', 'discord')
 					)}
 				>
 					<Discord class="h-4 w-4 fill-current" />
-					 Discord
+					Discord
 				</a>
 				<!-- <a
 					href="/getting-started"
@@ -116,7 +120,7 @@ const discord = await getEntry('socials', 'discord')
 			{
 				games.map((game) => (
 					<a
-						href={`/${game.data.homepage.slug}`}
+						href={`/${game.data.homepage.id}`}
 						rel="prefetch"
 						class="group relative aspect-video overflow-hidden rounded-lg"
 					>

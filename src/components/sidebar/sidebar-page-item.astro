@@ -11,13 +11,18 @@ const { item, ...props } = Astro.props
 let { slug, label } = item.value
 
 if (!label) {
-	const { data } = await getEntry(slug.collection, slug.slug)
-	label = data.title
+	const entry = await getEntry(slug.collection, slug.id)
+
+	if (!entry) {
+		throw new Error(`Entry not found for slug: ${slug.id}`)
+	}
+
+	label = entry.data.title
 }
 ---
 
 <a
-	href={`/${slug.slug}`}
+	href={`/${slug.id}`}
 	{...props}
 	>{label}</a
 >
