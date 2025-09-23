@@ -24,6 +24,10 @@ export const getStaticPaths = (async () => {
 
 const navigation = await getEntry('navigation', 'main')
 
+if (!navigation) {
+	throw new Error('Navigation not found')
+}
+
 const { page } = Astro.props
 const { Content, headings } = await page.render()
 
@@ -97,7 +101,7 @@ editUrl = `${editUrl}/collection/pages/item/${encodeURIComponent(page.slug)}`
 					class="flex items-center fill-foreground"
 				>
 					<Github class="mr-2 h-4 w-4" />
-					 Edit This Page
+					Edit This Page
 				</a>
 			</div>
 		</aside>
