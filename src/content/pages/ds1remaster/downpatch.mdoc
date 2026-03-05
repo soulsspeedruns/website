@@ -1,0 +1,50 @@
+---
+title: downpatch
+hidden: false
+---
+# DownPatch
+
+Downpatch in Dark Souls Remastered allow the player to perform easier moveswap and confirmation box dupes.
+
+## How to downpatch ?
+
+windows key + r\
+`steam://open/console`\
+\
+inside steam console:\
+1.01 executable: `download_depot 570940 570943 7243587649607020708`\
+1.01 content `download_depot 570940 570941 1614268332181480210`\
+\
+Navigate to `C:\Program Files (x86)\Steam\steamapps\content\app_570940` (or wherever steam is installed).\
+\
+Merge the contents of the two `depot_` folders into one folder.\
+\
+Turn off auto-updates in Steam by right-clicking  Dark Souls: Remastered in your library > Properties > Updates > set "Automatic Updates" to "Only update this game when I launch it"\
+\
+Backup/rename your current `steamapps\common\DARK SOULS REMASTERED` game folder. Replace it with this merged folder.
+
+#### **For anyone curious:**
+
+\
+Changed Files (.exe excluded):
+
+```
+event\m18_00_00_00.emevd.dcxmap\MapStudioNew\m12_00_00_01.msbmap\MapStudioNew\m18_00_00_00.msbmap\MapStudio\m12_00_00_01.msbmap\MapStudio\m18_00_00_00.msbmap\m12_00_00_01\m12_00_00_01.mcgmap\m13_00_00_00\m13_00_00_00.mcgmap\m18_00_00_00\m18_00_00_00.mcgmenu\menu.drb.dcxmsg\PORTUGUESE\menu.msgbnd.dcxother\InGameStay.loadlistparam\GameParam\GameParam.parambnd.dcxscript\eventCommon.luabnd.dcxshader\FRPG_Filter_DX11.shaderbnd.dcx
+```
+
+#### 
+
+\
+Files only in current patch:
+
+```
+map\m18_00_00_00\m18_00_00_00.nvmdump
+```
+
+#### 
+
+Files only in old patch:
+
+```
+shader\FRPG_Sfx_DX11.shaderbnd.dcxshader\FRPG_Flver_fpo_DX11.shaderbnd.dcxlibeay32.dllshader\FRPG_Flver_vpo_DX11.shaderbnd.dcxssleay32.dll
+```
