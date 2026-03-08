@@ -137,3 +137,13 @@ Another way to achieve the wrong warp is to be in online mode and simply enterin
 [Here](https://youtu.be/9em7PhKXTio?t=7033) is an example of PCC WW by **Regole** on YouTube.
 
 PCC WW was discovered by **Kahmul & CapitaineToinon** on PTDE version of the game.
+
+## PCC Storage Invasion Point Wrong Warp
+
+This wrong warp makes use of the fact that when an invasion is performed, the map (area) in which it was performed is stored in memory until the next game restart and is not saved/tied to the actual savefile. The actual position values (X/Y/Z) of the invasion on the other hand are individual to each character and saved to the savefile whenever an invasion is performed. (These position values can be carried over to a new character as well, by loading a character with stored position values and then quitting out again, which loads the position values into memory. Creating a new character right afterwards saves those values for the new character as well even though that character has not performed an invasion yet.)
+
+With an invasion map stored in the current game session, if the PCC is used via Item Swap near Hydra and then the DLC map (and thus the DLC event scripts) are unloaded before the PCC warp occurs, the player is wrong warped to the stored invasion map. The only two wrong warps currently possible with this method while staying offline are the Lautrec (Anor Londo) and Shiva (Painted World) invasions. For this wrong warp to work, the player needs to be hollow.
+
+Should no invasion map be stored in memory when the trick is performed, then the player will be booted to the main menu instead. Loading the same character again will make the character spawn at the Oolacile Stoicism (this occurs even without deloading the DLC map at all and quitting out after using the PCC). Loading a different character on the other hand will make that character spawn at the invasion position stored in its savefile, so either at the position at which the character last performed an invasion, or, if no invasion was performed with the character, at the position that was stored in memory when the character was created. If no position was stored in memory when the character was created, the position defaults to 0/0/0.
+
+Discovered by **Kahmul** on PTDE version of the game.
